@@ -19,5 +19,12 @@ export function setupVars(element: HTMLParagraphElement){
     const constante: string = "Adios"
     // constante = "Adiosito"  No se puede cambiar
 
-    element.innerHTML=`nulo: ${a}, booleano ${b}, numero ${c}, cadena ${d}, numeroVariable ${numeroVariable}, variableLocal ${variableLocal}, constante ${constante}`;
+    element.innerHTML=`
+        nulo: ${a}, 
+        booleano ${b}, 
+        numero ${c}, 
+        cadena ${d}, 
+        numeroVariable ${numeroVariable}, 
+        variableLocal ${variableLocal}, 
+        constante ${constante}`;
 }

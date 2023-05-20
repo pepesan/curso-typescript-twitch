@@ -5,6 +5,11 @@ import { setupCounter } from './counter.ts'
 import { setupVars } from "./tipos.ts";
 import {setupArrays} from "./arrays.ts";
 import {setupCadenas} from "./cadenas.ts";
+import {setupTuplas} from "./tuplas.ts";
+import {setupEnums} from "./enums.ts";
+import {setupUnions} from "./unions.ts";
+import {setupAny} from "./any.ts";
+import {setupVoid} from "./void.ts";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -24,6 +29,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </p>
     <p id="cadenas" class="read-the-docs">
     </p>
+    <p id="tuplas" class="read-the-docs">
+    </p>
+    <p id="enums" class="read-the-docs">
+    </p>
+    <p id="unions" class="read-the-docs">
+    </p>
+    <p id="anys" class="read-the-docs">
+    </p>
+    <p id="voids" class="read-the-docs">
+    </p>
   </div>
 `
 
@@ -31,3 +46,8 @@ setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
 setupVars(document.querySelector<HTMLParagraphElement>('#variables')!)
 setupArrays(document.querySelector<HTMLParagraphElement>('#arrays')!)
 setupCadenas(document.querySelector<HTMLParagraphElement>('#cadenas')!)
+setupTuplas(document.querySelector<HTMLParagraphElement>('#tuplas')!)
+setupEnums(document.querySelector<HTMLParagraphElement>('#enums')!)
+setupUnions(document.querySelector<HTMLParagraphElement>('#unions')!)
+setupAny(document.querySelector<HTMLParagraphElement>('#anys')!)
+setupVoid(document.querySelector<HTMLParagraphElement>('#voids')!)
