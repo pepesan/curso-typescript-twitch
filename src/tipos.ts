@@ -1,4 +1,5 @@
 export function setupVars(element: HTMLParagraphElement){
+    // definiciones de variables
     let a: null = null
     let b: boolean = true
     let c: number = 23
@@ -19,6 +20,7 @@ export function setupVars(element: HTMLParagraphElement){
     const constante: string = "Adios"
     // constante = "Adiosito"  No se puede cambiar
 
+    // imprimir por pantalla en el elemento parrafo un texto
     element.innerHTML=`
         nulo: ${a}, 
         booleano ${b}, 

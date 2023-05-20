@@ -7,7 +7,7 @@ export function setupVoid(element: HTMLParagraphElement): void{
     // never se usa principalmente para definir que una función no devuelve nunca nada
 
 
-    // laNada = 2; // no puiede contener valor
+    // laNada = 2; // no puede contener valor
     element.innerHTML=`
         laNada ${laNada}
     `;
