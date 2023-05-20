@@ -2,6 +2,9 @@ import './style.css'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
+import { setupVars } from "./tipos.ts";
+import {setupArrays} from "./arrays.ts";
+import {setupCadenas} from "./cadenas.ts";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -15,10 +18,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="card">
       <button id="counter" type="button"></button>
     </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
+    <p id="variables" class="read-the-docs">
+    </p>
+    <p id="arrays" class="read-the-docs">
+    </p>
+    <p id="cadenas" class="read-the-docs">
     </p>
   </div>
 `
 
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+setupVars(document.querySelector<HTMLParagraphElement>('#variables')!)
+setupArrays(document.querySelector<HTMLParagraphElement>('#arrays')!)
+setupCadenas(document.querySelector<HTMLParagraphElement>('#cadenas')!)
