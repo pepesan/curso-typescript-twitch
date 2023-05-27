@@ -2,14 +2,17 @@ import './style.css'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
-import { setupVars } from "./tipos.ts";
-import {setupArrays} from "./arrays.ts";
-import {setupCadenas} from "./cadenas.ts";
-import {setupTuplas} from "./tuplas.ts";
-import {setupEnums} from "./enums.ts";
-import {setupUnions} from "./unions.ts";
-import {setupAny} from "./any.ts";
-import {setupVoid} from "./void.ts";
+import { setupVars } from "./01-datos/tipos.ts";
+import {setupArrays} from "./01-datos/arrays.ts";
+import {setupCadenas} from "./01-datos/cadenas.ts";
+import {setupTuplas} from "./01-datos/tuplas.ts";
+import {setupEnums} from "./01-datos/enums.ts";
+import {setupUnions} from "./01-datos/unions.ts";
+import {setupAny} from "./01-datos/any.ts";
+import {setupVoid} from "./01-datos/void.ts";
+import {setupCondicionales} from "./02-estructuras/condicionales.ts";
+import {setupBucles} from "./02-estructuras/bucles.ts";
+import {setupTryCatch} from "./02-estructuras/try-catch.ts";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -39,9 +42,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </p>
     <p id="voids" class="read-the-docs">
     </p>
+    <p id="condicionales" class="read-the-docs">
+    </p>
+    <p id="bucles" class="read-the-docs">
+    </p>
+    <p id="trycatch" class="read-the-docs">
+    </p>
   </div>
 `
 
+// Manejo de datos
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
 setupVars(document.querySelector<HTMLParagraphElement>('#variables')!)
 setupArrays(document.querySelector<HTMLParagraphElement>('#arrays')!)
@@ -51,3 +61,7 @@ setupEnums(document.querySelector<HTMLParagraphElement>('#enums')!)
 setupUnions(document.querySelector<HTMLParagraphElement>('#unions')!)
 setupAny(document.querySelector<HTMLParagraphElement>('#anys')!)
 setupVoid(document.querySelector<HTMLParagraphElement>('#voids')!)
+// estructuras de control
+setupCondicionales(document.querySelector<HTMLParagraphElement>('#condicionales')!)
+setupBucles(document.querySelector<HTMLParagraphElement>('#bucles')!)
+setupTryCatch(document.querySelector<HTMLParagraphElement>('#trycatch')!)
