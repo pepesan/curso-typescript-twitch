@@ -15,6 +15,7 @@ import {setupBucles} from "./02-estructuras/bucles.ts";
 import {setupTryCatch} from "./02-estructuras/try-catch.ts";
 import {setupFunciones} from "./03-funciones/funciones.ts";
 import {setupClases} from "./04-clases/clases.ts";
+import {setupClasesEjercicio01} from "./ejercicios/04-clases/ejercicio01.ts";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -58,6 +59,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h2>Clases</h2>
     <p id="clases" class="read-the-docs">
     </p>
+    <h2>Ejercicios</h2>
+    <h3>Clases</h3>
+    <p id="ejercicio-clases" class="read-the-docs">
+    </p>
   </div>
 `
 
@@ -79,3 +84,7 @@ setupTryCatch(document.querySelector<HTMLParagraphElement>('#trycatch')!)
 setupFunciones(document.querySelector<HTMLParagraphElement>('#funciones')!)
 // clases
 setupClases(document.querySelector<HTMLParagraphElement>('#clases')!)
+
+
+// Ejercicios
+setupClasesEjercicio01(document.querySelector<HTMLParagraphElement>('#ejercicio-clases')!)
