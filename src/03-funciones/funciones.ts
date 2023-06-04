@@ -20,7 +20,7 @@ export function setupFunciones(element: HTMLParagraphElement){
         return a+b;
     }
 
-    let salidaSuma:number = suma(2,3);
+    let salidaSuma:number = suma(2,3); // devuelve 5
 
     // Funciones con parámetros opcionales
     function Greet(greeting: string, name?: string ) : string {
@@ -33,15 +33,16 @@ export function setupFunciones(element: HTMLParagraphElement){
     }
 
     // llamada a función
-    let salidaGreet: string = Greet("Hola", "David");
+    let salidaGreet: string = Greet("Hola");
+    salidaGreet = Greet("Hola", "David"); // devuelve "Hola David!
 
     // parámetros por defecto
     function multiplica(num: number, multi: number = 3): number{
         return num*multi;
     }
 
-    let salidaMultiplica:number  = multiplica(2,3);
-    salidaMultiplica  = multiplica(2); // multi = 3
+    let salidaMultiplica:number  = multiplica(2,3); // devuelve 6
+    salidaMultiplica  = multiplica(2); // multi = 3 // devuelve 6
 
     // múltiples parámetros indefinidos en número
     function Greet3(greeting: string, ...names: string[]) {
@@ -74,8 +75,8 @@ export function setupFunciones(element: HTMLParagraphElement){
         return a + b;
     }
 
-    let salidaAdd: any = add(2,3);
-    salidaAdd = add("hola", " mundo")
+    let salidaAdd: any = add(2,3); // dev 5
+    salidaAdd = add("hola", " mundo") // dev "hola mundo"
 
 
     element.innerHTML=`

@@ -14,6 +14,7 @@ import {setupCondicionales} from "./02-estructuras/condicionales.ts";
 import {setupBucles} from "./02-estructuras/bucles.ts";
 import {setupTryCatch} from "./02-estructuras/try-catch.ts";
 import {setupFunciones} from "./03-funciones/funciones.ts";
+import {setupClases} from "./04-clases/clases.ts";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -54,6 +55,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h2>Funciones</h2>
     <p id="funciones" class="read-the-docs">
     </p>
+    <h2>Clases</h2>
+    <p id="clases" class="read-the-docs">
+    </p>
   </div>
 `
 
@@ -73,3 +77,5 @@ setupBucles(document.querySelector<HTMLParagraphElement>('#bucles')!)
 setupTryCatch(document.querySelector<HTMLParagraphElement>('#trycatch')!)
 // funciones
 setupFunciones(document.querySelector<HTMLParagraphElement>('#funciones')!)
+// clases
+setupClases(document.querySelector<HTMLParagraphElement>('#clases')!)
