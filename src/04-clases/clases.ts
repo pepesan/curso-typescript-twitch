@@ -11,8 +11,8 @@ export function setupClases(element: HTMLParagraphElement){
 
     // definición de una clase
     class Employee {
-        empCode: number;
-        empName: string;
+        empCode: number; // Integer ampCode
+        empName: string; // String empName
 
         constructor(code: number = 0, name: string = "") {
             this.empName = name;
@@ -20,12 +20,14 @@ export function setupClases(element: HTMLParagraphElement){
         }
     }
     // instanciación del objeto constructor sin parametros
-    let empleado = new Employee();
-    empleado.empCode=27;
+    let empleado = new Employee(); // Employee empleado = new Employee();
+    empleado.empCode = 27;
     empleado.empName = "David"
 
     // instanciación del objeto constructor con parametros
     let empleado2 = new Employee(27, "David");
+    empleado2 = new Employee(27);
+    empleado2.empName = "David";
 
     // definición de getter y setters
     class Person {
@@ -62,7 +64,7 @@ export function setupClases(element: HTMLParagraphElement){
         // getter de _firstname personalizado
         public set firstName(value: string) {
             if (value==""){
-                throw new Error('The age is invalid');
+                throw new Error('The firtName is invalid');
             }
             this._firstName = value;
         }
