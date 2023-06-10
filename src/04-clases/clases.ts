@@ -300,6 +300,17 @@ export function setupClases(element: HTMLParagraphElement){
     let animalicomultiple: AnimalicoMultiple = new AnimalicoMultiple();
 
 
+    // incluidos ejemplos de interfaces con datos
+    interface Datos{
+        nombre: string;
+        edad: number;
+    }
+
+
+    let misDatos: Datos = {
+        nombre: "David",
+        edad: 45
+    }
 
 
     // Datos estáticos
@@ -383,6 +394,7 @@ export function setupClases(element: HTMLParagraphElement){
         Uso de Interfaces:
         Animalico: ${animalico.dameString()} :
         AnimalicoMultiple: ${animalicomultiple.dameOtraString()}:
+        misDatos: ${misDatos.edad} , ${misDatos.nombre}
         Atributos estáticos:
         Estaticos: ${Estaticos.valor} :
         Clases Abstractas:
