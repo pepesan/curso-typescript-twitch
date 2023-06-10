@@ -31,3 +31,29 @@
  age
 * Crea otro método en clase Animal que permita modificar el atributo
  _age (Setter) que lance un error en el caso de age ser 0
+
+## Ejercicio 2
+* En base al ejercicio anterior resolver la siguientes cuestiones:
+* Crea un nuevo párrafo en el main.ts con el id
+  ejercicio-clases-02 que podamos modificar más adelante
+* Crea un método setupEjercicio02Clases dentro de la carpeta  
+  ejercicio/clases en el fichero ejercicio02.ts para que
+  modifique el párrafo que se pase como parámetro
+* Modifica el main.ts para que llame al método
+    setupEjercicio02Clases pasádole como parámetro el
+    parrafo cuyo identificativo sea ejercicio-clases-02
+* Crea una nueva clase llamada Perro que herede de Animal
+* Dentro del fichero ejercicio02.ts crea un objeto de la clase perro 
+  llamado nyska con una llamada al constructor sin parámetros. Comprueba que 
+  al ponerlo dentro del párrafo presenta la edad de nyska es 1
+* Declara un nuevo atributo a la clase Perro que sea de tipo string y se llame
+  _nombre que esté declarado como atributo privado
+* Crea una función constructora para la clase Perro que permita inicializar
+  tanto la edad como el nombre del perro, coloca valores por defecto
+* Modifica la llamada a la función constructora del objeto nyska para pasar
+  los datos de 7 a edad y "Nyska" como nombre
+* Crea el getter y el setter llamado nombre del atributo _nombre en la clase Perro
+* Modifica la salida del párrado del ejercicio para incluir la edad del objeto 
+  nyska y su nombre
+* Crea el toString de Animal y el de Perro para que presente en una cadena
+  los valores de ambas clases

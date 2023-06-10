@@ -85,6 +85,62 @@ export function setupClases(element: HTMLParagraphElement){
     person.age = 45
     person.firstName = "Davicin"
 
+
+    class Person2{
+        // atributo privado
+        private _age: number;
+        // atributo protegido
+        protected _firstName: string;
+        // atributo de sólo lectura privado
+        private readonly _lastName: string;
+
+        // función constructora
+        constructor(age: number = 0, firstName: string = "", lastName: string = "") {
+            this._age = age;
+            this._firstName = firstName;
+            this._lastName = lastName;
+        }
+
+        // getter de age
+        public getAge() {
+            return this._age;
+        }
+
+        // setter de age
+        public setAge(theAge: number) {
+            this._age = theAge;
+        }
+
+
+        // getter de _firstname
+        public getFirstName(): string {
+            return this._firstName;
+        }
+
+        // getter de _firstname personalizado
+        public setFirstName(value: string) {
+            if (value==""){
+                throw new Error('The firtName is invalid');
+            }
+            this._firstName = value;
+        }
+
+        // getter de _lastName
+        public getLastName(): string {
+            return this._lastName;
+        }
+
+        // getter de varios valores
+        public getFullName(): string {
+            return `${this._firstName} ${this._lastName}`;
+        }
+    }
+
+    let person2: Person2 = new Person2(44, "David", "Vaquero")
+    // usando los setters
+    person2.setAge(45);
+    person2.setFirstName("Davicin");
+
     // uso de toString
     class Cuadrado{
         private _lado: number;
@@ -243,6 +299,9 @@ export function setupClases(element: HTMLParagraphElement){
 
     let animalicomultiple: AnimalicoMultiple = new AnimalicoMultiple();
 
+
+
+
     // Datos estáticos
     class Estaticos{
         public static valor: number = 0;
@@ -270,6 +329,48 @@ export function setupClases(element: HTMLParagraphElement){
 
     // clases genéricas
 
+    // Definición de la interfaz
+    interface Usuario {
+        nombre: string;
+        edad: number;
+        correo: string;
+    }
+
+// Clase genérica que utiliza la interfaz
+    class ServicioGenerico<T> {
+        private datos: T[] = [];
+
+        agregarDato(dato: T) {
+            this.datos.push(dato);
+            console.log('Dato agregado:', dato);
+        }
+
+        obtenerDatos() {
+            return this.datos;
+        }
+    }
+
+// Uso de la clase genérica con la interfaz Usuario
+    const usuario1: Usuario = {
+        nombre: 'Juan',
+        edad: 25,
+        correo: 'juan@example.com'
+    };
+
+    const usuario2: Usuario = {
+        nombre: 'María',
+        edad: 30,
+        correo: 'maria@example.com'
+    };
+
+    const servicioUsuarios = new ServicioGenerico<Usuario>();
+    servicioUsuarios.agregarDato(usuario1);
+    servicioUsuarios.agregarDato(usuario2);
+
+    const usuariosRegistrados = servicioUsuarios.obtenerDatos();
+
+
+
     element.innerHTML=`
         empleado: ${empleado.empCode} , ${empleado.empName} : 
         empleado2: ${empleado2.empCode} , ${empleado2.empName} : 
@@ -286,6 +387,7 @@ export function setupClases(element: HTMLParagraphElement){
         Estaticos: ${Estaticos.valor} :
         Clases Abstractas:
         Abstracta: ${d.getName()} :
-        
+        Generics:
+        nombre del primer usuario: ${usuariosRegistrados[0].nombre}
     `;
 }

@@ -16,4 +16,8 @@ export class Animal{
         }
         this._edad = edad;
     }
+
+    public toString(): string{
+        return `Animal[edad: ${this._edad}]`;
+    }
 }
