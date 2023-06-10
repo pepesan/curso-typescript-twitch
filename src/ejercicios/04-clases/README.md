@@ -53,7 +53,7 @@
 * Modifica la llamada a la función constructora del objeto nyska para pasar
   los datos de 7 a edad y "Nyska" como nombre
 * Crea el getter y el setter llamado nombre del atributo _nombre en la clase Perro
-* Modifica la salida del párrado del ejercicio para incluir la edad del objeto 
+* Modifica la salida del párrafo del ejercicio para incluir la edad del objeto 
   nyska y su nombre
 * Crea el toString de Animal y el de Perro para que presente en una cadena
   los valores de ambas clases
