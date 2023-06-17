@@ -315,12 +315,21 @@ export function setupClases(element: HTMLParagraphElement){
 
     // Datos estáticos
     class Estaticos{
+        // define un atributo estático
         public static valor: number = 0;
+
+        // define una función estática
+        public static sumaValores(num1: number, num2: number): number{
+            return num1 + num2;
+        }
     }
 
+    // llamada a atributo estático
     Estaticos.valor++;
+    // llamada a método estático
+    console.log(Estaticos.sumaValores(2,3));
 
-    // Clases Asbtractas
+    // Clases Abstractas
     // Definición clase abstracta
     abstract class Base {
         abstract getName(): string;
@@ -334,11 +343,26 @@ export function setupClases(element: HTMLParagraphElement){
         getName() {
             return "world";
         }
+
     }
 
-    const d = new Derived();
+    const d: Derived = new Derived();
 
     // clases genéricas
+
+    // clase no genérica
+    class ServicioString{
+        private datos: string[] = [];
+
+        agregarDato(dato: string) {
+            this.datos.push(dato);
+            console.log('Dato agregado:', dato);
+        }
+
+        obtenerDatos() {
+            return this.datos;
+        }
+    }
 
     // Definición de la interfaz
     interface Usuario {
@@ -347,8 +371,9 @@ export function setupClases(element: HTMLParagraphElement){
         correo: string;
     }
 
-// Clase genérica que utiliza la interfaz
+    // Clase genérica que utiliza la interfaz
     class ServicioGenerico<T> {
+        // definición del atributo en base a T
         private datos: T[] = [];
 
         agregarDato(dato: T) {
@@ -361,7 +386,7 @@ export function setupClases(element: HTMLParagraphElement){
         }
     }
 
-// Uso de la clase genérica con la interfaz Usuario
+    // Uso de la clase genérica con la interfaz Usuario
     const usuario1: Usuario = {
         nombre: 'Juan',
         edad: 25,
@@ -374,13 +399,17 @@ export function setupClases(element: HTMLParagraphElement){
         correo: 'maria@example.com'
     };
 
-    const servicioUsuarios = new ServicioGenerico<Usuario>();
+    const servicioUsuarios: ServicioGenerico<Usuario> = new ServicioGenerico<Usuario>();
     servicioUsuarios.agregarDato(usuario1);
     servicioUsuarios.agregarDato(usuario2);
 
-    const usuariosRegistrados = servicioUsuarios.obtenerDatos();
+    const usuariosRegistrados: Usuario[] = servicioUsuarios.obtenerDatos();
 
-
+    // ejemplo de objeto con cadenas de caracteres
+    const servicioCadenas: ServicioGenerico<string> = new ServicioGenerico<string>();
+    servicioCadenas.agregarDato("Hola");
+    servicioCadenas.agregarDato("Mundo");
+    const cadenasRegistradas: string[] = servicioCadenas.obtenerDatos();
 
     element.innerHTML=`
         empleado: ${empleado.empCode} , ${empleado.empName} : 
