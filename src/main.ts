@@ -17,6 +17,7 @@ import {setupFunciones} from "./03-funciones/funciones.ts";
 import {setupClases} from "./04-clases/clases.ts";
 import {setupEjercicioClases} from "./ejercicios/04-clases/ejercicio01.ts";
 import {setupEjercicio02Clases} from "./ejercicios/04-clases/ejercicio02.ts";
+import {setupEjercicio03Clases} from "./ejercicios/04-clases/ejercicio03.ts";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -66,6 +67,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </p>
     <p id="ejercicio-clases-02" class="read-the-docs">
     </p>
+    <p id="ejercicio-clases-03" class="read-the-docs">
+    </p>
     
   </div>
 `
@@ -92,3 +95,4 @@ setupClases(document.querySelector<HTMLParagraphElement>('#clases')!)
 // Ejercicios
 setupEjercicioClases(document.querySelector<HTMLParagraphElement>('#ejercicio-clases')!)
 setupEjercicio02Clases(document.querySelector<HTMLParagraphElement>('#ejercicio-clases-02')!)
+setupEjercicio03Clases(document.querySelector<HTMLParagraphElement>('#ejercicio-clases-03')!)

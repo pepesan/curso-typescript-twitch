@@ -12,8 +12,8 @@
  ejercicio/clases en el fichero ejercicio01.ts para que 
  modifique el párrafo que se pase como parámetro
 * Modifica el main.ts para que llame al método 
- setupEjercicioClases pasádole como parámetro el 
- parrafo cuyo identificativo sea ejercicio-clases
+ setupEjercicioClases pasándole como parámetro el 
+ párrafo cuyo identificativo sea ejercicio-clases
 * La clase Animal tiene un atributo llamado edad de tipo number
 * Modifica el fichero Animal.ts para que tenga ese atributo
 * Modifica la clase Animal para que tenga una función 
@@ -40,8 +40,8 @@
   ejercicio/clases en el fichero ejercicio02.ts para que
   modifique el párrafo que se pase como parámetro
 * Modifica el main.ts para que llame al método
-    setupEjercicio02Clases pasádole como parámetro el
-    parrafo cuyo identificativo sea ejercicio-clases-02
+    setupEjercicio02Clases pasándole como parámetro el
+    párrafo cuyo identificativo sea ejercicio-clases-02
 * Crea una nueva clase llamada Perro que herede de Animal
 * Dentro del fichero ejercicio02.ts crea un objeto de la clase perro 
   llamado nyska con una llamada al constructor sin parámetros. Comprueba que 
@@ -57,3 +57,22 @@
   nyska y su nombre
 * Crea el toString de Animal y el de Perro para que presente en una cadena
   los valores de ambas clases
+## Ejercicio 3
+* En base al ejercicio anterior resolver la siguientes cuestiones:
+* Crea un nuevo párrafo en el main.ts con el id
+  ejercicio-clases-03 que podamos modificar más adelante
+* Crea un método setupEjercicio03Clases dentro de la carpeta  
+  ejercicio/clases en el fichero ejercicio03.ts para que
+  modifique el párrafo que se pase como parámetro
+* Modifica el main.ts para que llame al método
+  setupEjercicio02Clases pasándole como parámetro el
+  párrafo cuyo identificativo sea ejercicio-clases-03
+* Crea un nuevo interfaz llamado Luchador
+* El interfaz debe definir un método abstracto llamado grito que devuelva
+  una string
+* Crea una nueva clase llamada Karateka que implemente el interfaz Luchador
+* Dentro del método grito de Katareta haz que devuelva "KYA!"
+* Dentro del fichero ejercicio03.ts crea un objeto de la clase Katateka llamado
+  danielSan
+* Haz que en el párrafo del ejercicio devuelva una llamada al método grito
+
