@@ -44,6 +44,12 @@ export function setupFunciones(element: HTMLParagraphElement){
     let salidaMultiplica:number  = multiplica(2,3); // devuelve 6
     salidaMultiplica  = multiplica(2); // multi = 3 // devuelve 6
 
+    function multiplicaComplejo(num1: number = 1, num2: number = 1): number{
+        return num1*num2;
+    }
+    salidaMultiplica = multiplicaComplejo();
+    salidaMultiplica = multiplicaComplejo(2);
+    salidaMultiplica = multiplicaComplejo(2,3);
     // múltiples parámetros indefinidos en número
     function Greet3(greeting: string, ...names: string[]) {
         return greeting + " " + names.join(", ") + "!";
