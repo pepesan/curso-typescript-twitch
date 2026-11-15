@@ -111,20 +111,29 @@
 .course-layout {
   display: grid;
   grid-template-columns: tokens.$sidebar-width minmax(0, 1fr);
-  max-width: 1600px;
+  width: 100%;
   min-height: calc(100vh - 4.5rem);
-  margin-inline: auto;
+  margin: 0;
+
+  &::before {
+    content: "";
+    grid-column: 1;
+    grid-row: 1;
+  }
 }
 
 .unit-sidebar {
-  position: sticky;
-  top: 4.5rem;
+  position: fixed;
+  z-index: 4;
+  inset: 4.5rem auto 0 0;
   display: flex;
-  height: calc(100vh - 4.5rem);
+  width: tokens.$sidebar-width;
   flex-direction: column;
   border-right: 1px solid var(--color-border);
   background: var(--color-surface);
   padding: 1.8rem 1rem 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .sidebar-heading {
@@ -232,6 +241,7 @@
 }
 
 .lesson-main {
+  grid-column: 2;
   width: min(100%, tokens.$content-width);
   margin-inline: auto;
   padding: 2.2rem clamp(1rem, 4vw, 3.2rem) 4rem;
@@ -263,34 +273,36 @@
 }
 
 .example-submenu {
-  flex: 0 0 auto;
-  max-height: 42%;
-  overflow: auto;
-  border-top: 1px solid var(--color-border);
-  padding: 0.8rem 0.1rem 0.2rem;
+  margin: 0 0 1.35rem;
+  border-block: 1px solid var(--color-border);
+  padding: 0.75rem 0;
 
   > .eyebrow {
-    padding: 0 0.65rem 0.5rem;
+    margin-bottom: 0.55rem;
   }
 }
 
 .example-list {
-  display: grid;
-  gap: 0.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+.example-picker-trigger {
+  display: none;
+}
+
 .example-button {
   display: flex;
-  width: 100%;
-  min-height: 2.55rem;
+  min-height: 2.35rem;
   align-items: center;
   gap: 0.6rem;
-  border: 0;
+  border: 1px solid var(--color-border);
   border-radius: 0.55rem;
-  background: transparent;
+  background: var(--color-surface);
   color: var(--color-muted);
   cursor: pointer;
   font-size: 0.82rem;
@@ -307,6 +319,7 @@
   }
 
   &.is-active {
+    border-color: var(--color-accent);
     background: var(--color-accent-soft);
     color: var(--color-accent);
   }
@@ -492,6 +505,10 @@
 
   .course-layout {
     display: block;
+
+    &::before {
+      display: none;
+    }
   }
 
   .unit-sidebar {
@@ -537,24 +554,116 @@
     }
   }
 
-  .example-list {
-    display: grid;
+  .example-submenu {
     overflow: visible;
+  }
+
+  .example-list {
+    display: none;
+  }
+
+  .example-picker {
+    position: relative;
+  }
+
+  .example-picker-trigger {
+    display: flex;
+    width: 100%;
+    min-height: 3.2rem;
+    align-items: center;
+    gap: 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 650;
+    padding: 0.65rem 2.8rem 0.65rem 0.85rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+    text-align: left;
+
+    &:hover {
+      border-color: var(--color-accent);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-accent);
+      outline: 3px solid var(--color-accent);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px var(--color-accent-soft);
+    }
+  }
+
+  .example-picker-label {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .example-picker-chevron {
+    position: absolute;
+    right: 1rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 2px solid var(--color-muted);
+    border-bottom: 2px solid var(--color-muted);
+    transform: translateY(-0.15rem) rotate(45deg);
+    transition: transform 150ms ease;
+  }
+
+  .example-picker.is-open .example-picker-chevron {
+    transform: translateY(0.1rem) rotate(225deg);
+  }
+
+  .example-list {
+    position: absolute;
+    z-index: 8;
+    top: calc(100% + 0.45rem);
+    right: 0;
+    left: 0;
+    display: none;
+    max-height: min(60dvh, 26rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 1px solid var(--color-border);
+    border-radius: 0.8rem;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+    padding: 0.4rem;
+  }
+
+  .example-picker.is-open .example-list {
+    display: grid;
   }
 
   .example-list li {
     min-width: 0;
   }
 
-  .example-submenu {
-    max-height: 38%;
-    flex: 0 0 auto;
-    overflow: auto;
-    border-top: 1px solid var(--color-border);
-    padding: 0.8rem 0.1rem 0.2rem;
+  .example-button {
+    width: 100%;
+    min-height: 2.8rem;
+    border-color: transparent;
+    border-radius: 0.55rem;
+    background: transparent;
+    padding: 0.5rem 0.6rem;
 
-    > .eyebrow {
-      padding: 0 0.65rem 0.5rem;
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-border);
+      background: var(--color-surface-raised);
+      color: var(--color-text);
+    }
+
+    &.is-active {
+      border-color: var(--color-accent-soft);
+      background: var(--color-accent-soft);
+      color: var(--color-accent);
     }
   }
 
