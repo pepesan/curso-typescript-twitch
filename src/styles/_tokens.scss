@@ -1,0 +1,34 @@
+// Design tokens: la interfaz cambia de tema sin duplicar sus componentes.
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-page: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-text: #17212b;
+  --color-muted: #66717d;
+  --color-border: #e2e6ea;
+  --color-accent: #b81a2c;
+  --color-accent-soft: #f9e9eb;
+  --color-code: #f0f2f5;
+  --shadow-soft: 0 12px 32px rgb(23 33 43 / 7%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-page: #101419;
+  --color-surface: #171d24;
+  --color-surface-raised: #1d252e;
+  --color-text: #edf1f5;
+  --color-muted: #a3afbb;
+  --color-border: #303a45;
+  --color-accent: #f06b78;
+  --color-accent-soft: #382127;
+  --color-code: #11171d;
+  --shadow-soft: 0 12px 32px rgb(0 0 0 / 22%);
+}
+
+$brand-red: #b81a2c;
+$content-width: 1120px;
+$sidebar-width: 278px;
+$page-gutter: clamp(1rem, 4vw, 3rem);
