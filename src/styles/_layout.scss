@@ -117,6 +117,7 @@
 
 .unit-sidebar nav {
   overflow: auto;
+  overscroll-behavior-x: contain;
   overscroll-behavior: contain;
 }
 
@@ -175,6 +176,7 @@
   padding: 0.45rem 0.65rem;
   text-align: left;
   transition: color 120ms ease, background-color 120ms ease;
+  scroll-margin-inline: 1rem;
 
   &:hover,
   &:focus-visible {
@@ -262,6 +264,7 @@
   padding: 0.55rem 0.7rem;
   text-align: left;
   transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+  scroll-margin-inline: 1rem;
 
   &:hover,
   &:focus-visible {
@@ -461,6 +464,7 @@
 
   .unit-sidebar nav {
     overflow-x: auto;
+    touch-action: pan-x;
     scrollbar-width: thin;
   }
 
@@ -483,6 +487,8 @@
     margin-inline: -0.2rem;
     padding: 0.2rem;
     scrollbar-width: thin;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
   }
 
   .example-list li {
