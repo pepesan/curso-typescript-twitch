@@ -111,20 +111,29 @@
 .course-layout {
   display: grid;
   grid-template-columns: tokens.$sidebar-width minmax(0, 1fr);
-  max-width: 1600px;
+  width: 100%;
   min-height: calc(100vh - 4.5rem);
-  margin-inline: auto;
+  margin: 0;
+
+  &::before {
+    content: "";
+    grid-column: 1;
+    grid-row: 1;
+  }
 }
 
 .unit-sidebar {
-  position: sticky;
-  top: 4.5rem;
+  position: fixed;
+  z-index: 4;
+  inset: 4.5rem auto 0 0;
   display: flex;
-  height: calc(100vh - 4.5rem);
+  width: tokens.$sidebar-width;
   flex-direction: column;
   border-right: 1px solid var(--color-border);
   background: var(--color-surface);
   padding: 1.8rem 1rem 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .sidebar-heading {
@@ -232,6 +241,7 @@
 }
 
 .lesson-main {
+  grid-column: 2;
   width: min(100%, tokens.$content-width);
   margin-inline: auto;
   padding: 2.2rem clamp(1rem, 4vw, 3.2rem) 4rem;
@@ -495,6 +505,10 @@
 
   .course-layout {
     display: block;
+
+    &::before {
+      display: none;
+    }
   }
 
   .unit-sidebar {
