@@ -2,77 +2,85 @@
 
 ## Objetivos
 
-- Comprender cómo se relacionan JavaScript, ECMAScript y TypeScript.
-- Configurar un entorno y compilar TypeScript a JavaScript.
-- Escribir código con tipos, control de flujo y funciones reutilizables.
-- Modelar datos y comportamientos con objetos, interfaces y clases.
-- Organizar, reutilizar y probar código TypeScript.
+- Comprender para qué sirve TypeScript y cómo complementa a JavaScript.
+- Configurar el entorno, compilar TypeScript y ejecutar el JavaScript generado.
+- Usar variables, tipos, estructuras de control y funciones con seguridad de tipos.
+- Modelar requisitos mediante objetos, interfaces, clases y tipos genéricos.
+- Organizar el código en módulos y comprobarlo con pruebas automatizadas.
 
-## Contenidos
+## Unidades
 
-### 1. Introducción y entorno de desarrollo
+### 01. Introducción
 
-- Qué son JavaScript, ECMAScript y TypeScript, y cómo se relacionan.
-- Ventajas y límites del sistema de tipos de TypeScript.
-- Instalación y herramientas necesarias.
-- Creación de un proyecto y configuración básica.
+- Relación entre JavaScript, ECMAScript y TypeScript.
+- Qué aporta el análisis estático de tipos durante el desarrollo.
+- Qué ocurre con las anotaciones de tipo al generar JavaScript.
 
-### 2. Compilación y ejecución
+### 02. Entorno de desarrollo
 
-- Cómo se transforma TypeScript en JavaScript.
-- Opciones esenciales del compilador `tsc`.
-- Ejecución del JavaScript generado en distintos entornos.
+- Uso de Node.js y npm para trabajar con el proyecto.
+- Instalación de dependencias.
+- Arranque del servidor de desarrollo con Vite.
 
-### 3. Variables y tipos
+### 03. Compilación a JavaScript
 
-- Declaración de variables con `const` y `let`.
-- Tipos primitivos y anotaciones de tipo.
-- Inferencia de tipos.
-- Arrays, tuplas, literales y enumeraciones cuando sean apropiadas.
-- `any`, `unknown`, `void`, `never` y valores nulos.
+- Comprobación de tipos y generación de JavaScript.
+- Proceso de compilación de la aplicación.
+- Creación de los archivos de producción en `dist/`.
 
-### 4. Estructuras de control y análisis de tipos
+### 04. Tipos de datos
 
-- Condicionales, bucles y operadores.
-- Uniones e intersecciones de tipos.
-- Estrechamiento de tipos con comprobaciones y guardas.
-- Tipos discriminados y comprobaciones exhaustivas.
+- Cadenas, arrays y tuplas.
+- Enums y uniones literales.
+- Uniones de tipos y estrechamiento con comprobaciones.
+- Diferencias entre `any` y `unknown`.
+- Uso de `void` y `never`.
 
-### 5. Funciones
+### 05. Variables
 
-- Parámetros, valores de retorno y firmas de función.
+- Declaración con `let`, `const` y `var`.
+- Inferencia y anotaciones de tipos.
+- Alcance de bloque y reasignación.
+
+### 06. Estructuras de control
+
+- Condicionales con `if` y `switch`.
+- Iteración con bucles sobre arrays y cadenas.
+- Manejo de errores con `try` y `catch`.
+- Estrechamiento de tipos según el flujo de control.
+
+### 07. Funciones
+
+- Parámetros y valores de retorno.
 - Parámetros opcionales, predeterminados y rest.
-- Funciones flecha y callbacks.
-- Sobrecargas y reutilización de funciones.
+- Tipos de función, callbacks y sobrecargas.
+- Reutilización de funciones con contratos claros.
 
-### 6. Objetos e interfaces
+### 08. Clases, interfaces y herencia
 
-- Propiedades, métodos y formas de objetos.
-- Interfaces y alias de tipo.
-- Propiedades opcionales, de solo lectura e índices.
-- Composición de tipos para representar requisitos.
+- Tipos para objetos, alias e interfaces.
+- Modelado de requisitos con objetos.
+- Clases, constructores, encapsulación y modificadores de acceso.
+- Herencia, clases abstractas e implementación de interfaces.
 
-### 7. Clases y herencia
+### 09. Generics
 
-- Clases, constructores, campos y métodos.
-- Modificadores de acceso y propiedades de solo lectura.
-- Herencia y clases abstractas.
-- Implementación de interfaces y composición frente a herencia.
+- Funciones y estructuras genéricas.
+- Relación entre los tipos de entrada y salida.
+- Restricciones genéricas con `extends`.
 
-### 8. Generics
+### 10. Módulos
 
-- Funciones y tipos genéricos.
-- Restricciones y parámetros genéricos.
-- Reutilización de código con seguridad de tipos.
+- Organización del código por archivos y responsabilidades.
+- Declaración de funciones y tipos reutilizables en un módulo.
 
-### 9. Módulos
+### 11. Importaciones y exportaciones
 
-- Exportaciones e importaciones.
-- Organización del código en módulos.
-- Diferencias básicas entre módulos de TypeScript y el formato de salida de JavaScript.
+- Exportación e importación de funciones y tipos.
+- Diferencia entre importar valores usados en ejecución e importar tipos.
 
-### 10. Testing
+### 12. Testing
 
-- Pruebas unitarias de funciones TypeScript con Vitest.
-- Pruebas de comportamiento con Cucumber.js.
-- Cobertura de código y lectura de los informes.
+- Pruebas unitarias directas con Vitest.
+- Escenarios BDD con Cucumber.js.
+- Ejecución de las pruebas y consulta de la cobertura de código.
