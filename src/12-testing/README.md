@@ -3,6 +3,7 @@
 Esta unidad demuestra dos formas de comprobar el comportamiento de una función:
 
 - **Prueba unitaria con Vitest:** `tests/unit/funciones.test.ts` llama a las funciones directamente y comprueba resultados concretos.
+- `tests/unit/theme.test.ts` comprueba cómo se elige el tema guardado o el del sistema.
 - **Escenario BDD con Cucumber.js:** `tests/bdd/features/saludos.feature` describe un ejemplo en lenguaje de dominio; los pasos TypeScript reutilizan la función `saludar`.
 
 Comandos disponibles desde la raíz:
