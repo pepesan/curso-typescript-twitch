@@ -63,6 +63,9 @@ export class CourseApp {
         this.renderShell();
 
         root.addEventListener("click", (event: MouseEvent) => this.onClick(event));
+        root.addEventListener("keydown", (event: KeyboardEvent) => {
+            if (event.key === "Escape" && this.isMobileMenuOpen()) this.closeMobileMenu(true);
+        });
         window.addEventListener("hashchange", () => this.renderCurrentRoute());
 
         if (!window.location.hash) {
@@ -86,9 +89,13 @@ export class CourseApp {
                 <span class="theme-toggle-icon" aria-hidden="true">☾</span>
                 <span class="theme-toggle-label">Tema</span>
               </button>
+              <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button"
+                aria-label="Abrir navegación del curso" aria-controls="unit-sidebar" aria-expanded="false">
+                <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+              </button>
             </header>
             <div class="course-layout">
-              <aside class="unit-sidebar" aria-label="Navegación del curso">
+              <aside class="unit-sidebar" id="unit-sidebar" aria-label="Navegación del curso">
                 <div class="sidebar-heading">
                   <p class="eyebrow">CURSO · 15 HORAS</p>
                   <h2>Contenido</h2>
@@ -141,6 +148,16 @@ export class CourseApp {
 
     private onClick(event: MouseEvent): void {
         if (!(event.target instanceof Element)) return;
+        const menuToggle = event.target.closest<HTMLButtonElement>("#mobile-menu-toggle");
+        if (menuToggle) {
+            this.toggleMobileMenu();
+            return;
+        }
+
+        if (this.isMobileMenuOpen() && !event.target.closest("#unit-sidebar")) {
+            this.closeMobileMenu(false);
+        }
+
         const unitButton = event.target.closest<HTMLButtonElement>("[data-unit-id]");
         if (unitButton) {
             const unit = this.units.find((item) => item.id === unitButton.dataset.unitId);
@@ -161,12 +178,38 @@ export class CourseApp {
             if (window.location.hash !== targetHash) {
                 this.focusAfterRender = "example";
                 window.location.hash = targetHash;
+            } else {
+                this.closeMobileMenu(true);
             }
             return;
         }
 
         if (event.target.closest("#previous-example")) this.moveExample(-1);
         if (event.target.closest("#next-example")) this.moveExample(1);
+    }
+
+    private isMobileMenuOpen(): boolean {
+        return this.root.querySelector("#unit-sidebar")?.classList.contains("is-open") ?? false;
+    }
+
+    private toggleMobileMenu(): void {
+        if (this.isMobileMenuOpen()) {
+            this.closeMobileMenu(true);
+            return;
+        }
+
+        this.root.querySelector("#unit-sidebar")?.classList.add("is-open");
+        const toggle = getElement<HTMLButtonElement>(this.root, "#mobile-menu-toggle");
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "Cerrar navegación del curso");
+    }
+
+    private closeMobileMenu(returnFocus: boolean): void {
+        this.root.querySelector("#unit-sidebar")?.classList.remove("is-open");
+        const toggle = getElement<HTMLButtonElement>(this.root, "#mobile-menu-toggle");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Abrir navegación del curso");
+        if (returnFocus) toggle.focus();
     }
 
     private moveExample(offset: -1 | 1): void {
@@ -237,7 +280,14 @@ export class CourseApp {
 
         // Rebuilding the button list would otherwise drop keyboard focus.
         if (this.focusAfterRender === "unit") activeUnitButton?.focus({ preventScroll: true });
-        if (this.focusAfterRender === "example") activeExampleButton?.focus({ preventScroll: true });
+        if (this.focusAfterRender === "example") {
+            if (this.isMobileMenuOpen()) this.closeMobileMenu(false);
+            if (window.matchMedia("(max-width: 900px)").matches) {
+                getElement<HTMLButtonElement>(this.root, "#mobile-menu-toggle").focus({ preventScroll: true });
+            } else {
+                activeExampleButton?.focus({ preventScroll: true });
+            }
+        }
         this.focusAfterRender = null;
     }
 }

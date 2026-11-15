@@ -4,7 +4,7 @@ Repositorio didáctico para aprender los fundamentos de TypeScript partiendo de 
 
 Los ejemplos están organizados en `src/` mediante unidades numeradas que siguen el temario. Algunas unidades son documentación de apoyo; las que contienen código se muestran desde la aplicación de ejemplo.
 
-La aplicación permite elegir una unidad y después uno de sus ejemplos desde el submenú. Cada ejemplo presenta juntos su código fuente y el resultado de la demostración. La selección se refleja en la URL para poder compartir enlaces directos; el tema claro/oscuro se conserva en el navegador.
+La aplicación permite elegir una unidad y después uno de sus ejemplos desde el submenú. En móvil, ambas navegaciones se agrupan en un menú hamburguesa. Cada ejemplo presenta juntos su código fuente y el resultado de la demostración. La selección se refleja en la URL para poder compartir enlaces directos; el tema claro/oscuro se conserva en el navegador.
 
 La configuración de Vite usa rutas relativas, por lo que el contenido de `dist/` también se puede servir desde una subcarpeta.
 
@@ -13,7 +13,7 @@ La aplicación está creada con Vite. Necesitas Node.js 22.12 o posterior dentro
 
 ## Cómo recorrer el curso
 
-El índice superior permite elegir una unidad. Dentro de ella, selecciona un ejemplo para ver su explicación y demostración; abre **Ver fuente del ejemplo** para consultar el TypeScript. Los controles anterior/siguiente recorren el curso y cada selección tiene un enlace directo en la URL. El tema claro u oscuro se puede cambiar desde el botón de la cabecera.
+El menú lateral permite elegir una unidad y, dentro de ella, un ejemplo. En móvil, pulsa el botón de menú para abrir ambas listas. Cada ejemplo muestra su código TypeScript y el resultado juntos. Los controles anterior/siguiente recorren el curso y cada selección tiene un enlace directo en la URL. El tema claro u oscuro se puede cambiar desde el botón de la cabecera.
 
 # Cómo accedo a la aplicación
 
