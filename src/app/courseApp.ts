@@ -97,7 +97,6 @@ export class CourseApp {
             <div class="course-layout">
               <aside class="unit-sidebar" id="unit-sidebar" aria-label="Navegación del curso">
                 <div class="sidebar-heading">
-                  <p class="eyebrow">CURSO · 15 HORAS</p>
                   <h2>Contenido</h2>
                 </div>
                 <nav aria-label="Unidades"><ol class="unit-list" id="unit-list"></ol></nav>
