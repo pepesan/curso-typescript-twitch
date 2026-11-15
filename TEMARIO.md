@@ -1,19 +1,17 @@
-# Temario de TypeScript
+# Temario de TypeScript y Angular
 
-**Duración:** 15 horas
+## 1. Fundamentos de TypeScript y Angular
 
-## Objetivos
+- ECMAScript y TypeScript.
+- Variables, tipos y funciones.
+- Clases, objetos e interfaces.
+- Arquitectura de Angular.
+- Componentes, servicios, directivas y pipes.
+- Instalación de Angular y Angular CLI.
+- Creación y ejecución de un proyecto.
 
-- Conocer los fundamentos de TypeScript.
-- Saber construir y reutilizar funciones.
-- Conocer los objetos principales.
-- Saber utilizar los objetos para funciones definidas en unos requisitos.
-- Conocer las distintas clases básicas.
-- Saber aplicar buenas prácticas de uso de TypeScript.
+## Resto de contenidos
 
-## Contenidos
-
-1. Introducción
 2. Entorno de desarrollo
 3. Compilación a JavaScript
 4. Tipos de datos
