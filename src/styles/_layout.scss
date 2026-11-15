@@ -565,18 +565,42 @@
   .example-select {
     display: block;
     width: 100%;
-    min-height: 2.8rem;
+    min-height: 3.2rem;
     border: 1px solid var(--color-border);
-    border-radius: 0.6rem;
+    border-radius: 0.75rem;
     background: var(--color-surface);
     color: var(--color-text);
     font: inherit;
-    padding: 0.5rem 0.75rem;
+    font-size: 0.92rem;
+    font-weight: 650;
+    padding: 0.65rem 2.8rem 0.65rem 0.85rem;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--color-muted) 50%),
+      linear-gradient(135deg, var(--color-muted) 50%, transparent 50%);
+    background-position:
+      calc(100% - 1.15rem) 50%,
+      calc(100% - 0.85rem) 50%;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+    transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+
+    &:hover {
+      border-color: var(--color-accent);
+    }
 
     &:focus-visible {
       border-color: var(--color-accent);
-      outline: 2px solid var(--color-accent);
+      outline: 3px solid var(--color-accent);
       outline-offset: 2px;
+      box-shadow: 0 0 0 4px var(--color-accent-soft);
+    }
+
+    option {
+      background: var(--color-surface);
+      color: var(--color-text);
     }
   }
 
