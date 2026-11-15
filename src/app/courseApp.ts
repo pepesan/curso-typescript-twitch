@@ -42,11 +42,6 @@ function renderExampleButtons(examples: readonly CourseExample[], activeExampleI
         </li>`).join("");
 }
 
-function renderExampleOptions(examples: readonly CourseExample[]): string {
-    return examples.map((item, index) => `
-        <option value="${item.id}">${String(index + 1).padStart(2, "0")} · ${item.title}</option>`).join("");
-}
-
 function getElement<T extends HTMLElement>(root: HTMLElement, selector: string): T {
     const element = root.querySelector<T>(selector);
     if (!element) {
@@ -58,7 +53,7 @@ function getElement<T extends HTMLElement>(root: HTMLElement, selector: string):
 /** Controla la selección de unidades y ejemplos sin volver a cargar la página. */
 export class CourseApp {
     private readonly allExamples: Array<{ unit: CourseUnit; example: CourseExample }>;
-    private focusAfterRender: "unit" | "example" | "example-select" | null = null;
+    private focusAfterRender: "unit" | "example" | null = null;
 
     constructor(
         private readonly root: HTMLElement,
@@ -68,9 +63,10 @@ export class CourseApp {
         this.renderShell();
 
         root.addEventListener("click", (event: MouseEvent) => this.onClick(event));
-        root.addEventListener("change", (event: Event) => this.onChange(event));
         root.addEventListener("keydown", (event: KeyboardEvent) => {
-            if (event.key === "Escape" && this.isMobileMenuOpen()) this.closeMobileMenu(true);
+            if (event.key !== "Escape") return;
+            if (this.isMobileMenuOpen()) this.closeMobileMenu(true);
+            if (this.isExamplePickerOpen()) this.closeExamplePicker(true);
         });
         window.addEventListener("hashchange", () => this.renderCurrentRoute());
 
@@ -117,8 +113,16 @@ export class CourseApp {
                 <p class="section-intro" id="unit-description"></p>
                 <nav class="example-submenu" aria-label="Ejemplos de la unidad actual">
                   <p class="eyebrow" id="example-menu-title">Ejemplos</p>
-                  <ol class="example-list" id="example-list"></ol>
-                  <select class="example-select" id="example-select" aria-labelledby="example-menu-title"></select>
+                  <div class="example-picker" id="example-picker">
+                    <button class="example-picker-trigger" id="example-picker-trigger" type="button"
+                      aria-expanded="false" aria-controls="example-list"
+                      aria-labelledby="example-menu-title active-example-number active-example-title">
+                      <span class="example-button-number" id="active-example-number"></span>
+                      <span class="example-picker-label" id="active-example-title"></span>
+                      <span class="example-picker-chevron" aria-hidden="true"></span>
+                    </button>
+                    <ol class="example-list" id="example-list"></ol>
+                  </div>
                 </nav>
                 <article class="example-card" aria-labelledby="example-title">
                   <div class="example-card-heading">
@@ -154,14 +158,24 @@ export class CourseApp {
 
     private onClick(event: MouseEvent): void {
         if (!(event.target instanceof Element)) return;
+        const examplePickerTrigger = event.target.closest<HTMLButtonElement>("#example-picker-trigger");
+        if (examplePickerTrigger) {
+            this.toggleExamplePicker();
+            return;
+        }
+
         const menuToggle = event.target.closest<HTMLButtonElement>("#mobile-menu-toggle");
         if (menuToggle) {
+            this.closeExamplePicker(false);
             this.toggleMobileMenu();
             return;
         }
 
         if (this.isMobileMenuOpen() && !event.target.closest("#unit-sidebar")) {
             this.closeMobileMenu(false);
+        }
+        if (this.isExamplePickerOpen() && !event.target.closest("#example-picker")) {
+            this.closeExamplePicker(false);
         }
 
         const unitButton = event.target.closest<HTMLButtonElement>("[data-unit-id]");
@@ -183,9 +197,11 @@ export class CourseApp {
             const targetHash = unitHash(route.unitId, exampleButton.dataset.exampleId!);
             if (window.location.hash !== targetHash) {
                 this.focusAfterRender = "example";
+                this.closeExamplePicker(false);
                 window.location.hash = targetHash;
             } else {
                 this.closeMobileMenu(true);
+                this.closeExamplePicker(true);
             }
             return;
         }
@@ -194,15 +210,24 @@ export class CourseApp {
         if (event.target.closest("#next-example")) this.moveExample(1);
     }
 
-    private onChange(event: Event): void {
-        if (!(event.target instanceof HTMLSelectElement) || event.target.id !== "example-select") return;
+    private isExamplePickerOpen(): boolean {
+        return this.root.querySelector("#example-picker")?.classList.contains("is-open") ?? false;
+    }
 
-        const route = routeFromHash(this.units);
-        const targetHash = unitHash(route.unitId, event.target.value);
-        if (window.location.hash !== targetHash) {
-            this.focusAfterRender = "example-select";
-            window.location.hash = targetHash;
+    private toggleExamplePicker(): void {
+        if (this.isExamplePickerOpen()) {
+            this.closeExamplePicker(false);
+            return;
         }
+
+        this.root.querySelector("#example-picker")?.classList.add("is-open");
+        getElement<HTMLButtonElement>(this.root, "#example-picker-trigger").setAttribute("aria-expanded", "true");
+    }
+
+    private closeExamplePicker(returnFocus: boolean): void {
+        this.root.querySelector("#example-picker")?.classList.remove("is-open");
+        getElement<HTMLButtonElement>(this.root, "#example-picker-trigger").setAttribute("aria-expanded", "false");
+        if (returnFocus) getElement<HTMLButtonElement>(this.root, "#example-picker-trigger").focus();
     }
 
     private isMobileMenuOpen(): boolean {
@@ -252,9 +277,10 @@ export class CourseApp {
 
         getElement<HTMLOListElement>(this.root, "#unit-list").innerHTML = renderUnitButtons(this.units, unit.id);
         getElement<HTMLOListElement>(this.root, "#example-list").innerHTML = renderExampleButtons(unit.examples, selectedExample.id);
-        const exampleSelect = getElement<HTMLSelectElement>(this.root, "#example-select");
-        exampleSelect.innerHTML = renderExampleOptions(unit.examples);
-        exampleSelect.value = selectedExample.id;
+        getElement<HTMLSpanElement>(this.root, "#active-example-number").textContent = String(exampleIndex + 1).padStart(2, "0");
+        getElement<HTMLSpanElement>(this.root, "#active-example-title").textContent = selectedExample.title;
+        this.root.querySelector("#example-picker")?.classList.remove("is-open");
+        getElement<HTMLButtonElement>(this.root, "#example-picker-trigger").setAttribute("aria-expanded", "false");
         getElement<HTMLParagraphElement>(this.root, "#example-menu-title").textContent = `EJEMPLOS · UNIDAD ${unit.id}`;
         getElement<HTMLParagraphElement>(this.root, "#breadcrumb").textContent = `Curso / Unidad ${unit.id}`;
         getElement<HTMLParagraphElement>(this.root, "#lesson-announcement").textContent = `Unidad ${unit.id}: ${unit.title}. Ejemplo: ${selectedExample.title}`;
@@ -302,7 +328,7 @@ export class CourseApp {
         if (this.focusAfterRender === "unit") {
             if (window.matchMedia("(max-width: 900px)").matches && this.isMobileMenuOpen()) {
                 this.closeMobileMenu(false);
-                activeExampleButton?.focus({ preventScroll: true });
+                getElement<HTMLButtonElement>(this.root, "#example-picker-trigger").focus({ preventScroll: true });
             } else {
                 activeUnitButton?.focus({ preventScroll: true });
             }
@@ -310,13 +336,10 @@ export class CourseApp {
         if (this.focusAfterRender === "example") {
             if (this.isMobileMenuOpen()) this.closeMobileMenu(false);
             if (window.matchMedia("(max-width: 900px)").matches) {
-                getElement<HTMLButtonElement>(this.root, "#mobile-menu-toggle").focus({ preventScroll: true });
+                getElement<HTMLButtonElement>(this.root, "#example-picker-trigger").focus({ preventScroll: true });
             } else {
                 activeExampleButton?.focus({ preventScroll: true });
             }
-        }
-        if (this.focusAfterRender === "example-select") {
-            getElement<HTMLSelectElement>(this.root, "#example-select").focus({ preventScroll: true });
         }
         this.focusAfterRender = null;
     }
