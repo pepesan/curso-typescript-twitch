@@ -263,20 +263,19 @@
 }
 
 .example-submenu {
-  flex: 0 0 auto;
-  max-height: 42%;
-  overflow: auto;
-  border-top: 1px solid var(--color-border);
-  padding: 0.8rem 0.1rem 0.2rem;
+  margin: 0 0 1.35rem;
+  border-block: 1px solid var(--color-border);
+  padding: 0.75rem 0;
 
   > .eyebrow {
-    padding: 0 0.65rem 0.5rem;
+    margin-bottom: 0.55rem;
   }
 }
 
 .example-list {
-  display: grid;
-  gap: 0.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -284,13 +283,12 @@
 
 .example-button {
   display: flex;
-  width: 100%;
-  min-height: 2.55rem;
+  min-height: 2.35rem;
   align-items: center;
   gap: 0.6rem;
-  border: 0;
+  border: 1px solid var(--color-border);
   border-radius: 0.55rem;
-  background: transparent;
+  background: var(--color-surface);
   color: var(--color-muted);
   cursor: pointer;
   font-size: 0.82rem;
@@ -307,6 +305,7 @@
   }
 
   &.is-active {
+    border-color: var(--color-accent);
     background: var(--color-accent-soft);
     color: var(--color-accent);
   }
@@ -537,25 +536,23 @@
     }
   }
 
+  .example-submenu {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
   .example-list {
-    display: grid;
-    overflow: visible;
+    width: max-content;
+    min-width: 100%;
+    flex-wrap: nowrap;
   }
 
   .example-list li {
-    min-width: 0;
+    flex: 0 0 auto;
   }
 
-  .example-submenu {
-    max-height: 38%;
-    flex: 0 0 auto;
-    overflow: auto;
-    border-top: 1px solid var(--color-border);
-    padding: 0.8rem 0.1rem 0.2rem;
-
-    > .eyebrow {
-      padding: 0 0.65rem 0.5rem;
-    }
+  .example-button {
+    white-space: nowrap;
   }
 
   .example-workbench {

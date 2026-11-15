@@ -100,10 +100,6 @@ export class CourseApp {
                   <h2>Contenido</h2>
                 </div>
                 <nav aria-label="Unidades"><ol class="unit-list" id="unit-list"></ol></nav>
-                <nav class="example-submenu" aria-label="Ejemplos de la unidad actual">
-                  <p class="eyebrow" id="example-menu-title">Ejemplos</p>
-                  <ol class="example-list" id="example-list"></ol>
-                </nav>
               </aside>
               <main class="lesson-main" id="lesson-main" tabindex="-1">
                 <p class="sr-only" id="lesson-announcement" aria-live="polite" aria-atomic="true"></p>
@@ -113,6 +109,10 @@ export class CourseApp {
                   <div><p class="eyebrow" id="unit-label"></p><h1 id="unit-title"></h1></div>
                 </header>
                 <p class="section-intro" id="unit-description"></p>
+                <nav class="example-submenu" aria-label="Ejemplos de la unidad actual">
+                  <p class="eyebrow" id="example-menu-title">Ejemplos</p>
+                  <ol class="example-list" id="example-list"></ol>
+                </nav>
                 <article class="example-card" aria-labelledby="example-title">
                   <div class="example-card-heading">
                     <p class="eyebrow" id="example-position"></p>
@@ -278,7 +278,14 @@ export class CourseApp {
         activeExampleButton?.scrollIntoView({ block: "nearest", inline: "center" });
 
         // Rebuilding the button list would otherwise drop keyboard focus.
-        if (this.focusAfterRender === "unit") activeUnitButton?.focus({ preventScroll: true });
+        if (this.focusAfterRender === "unit") {
+            if (window.matchMedia("(max-width: 900px)").matches && this.isMobileMenuOpen()) {
+                this.closeMobileMenu(false);
+                activeExampleButton?.focus({ preventScroll: true });
+            } else {
+                activeUnitButton?.focus({ preventScroll: true });
+            }
+        }
         if (this.focusAfterRender === "example") {
             if (this.isMobileMenuOpen()) this.closeMobileMenu(false);
             if (window.matchMedia("(max-width: 900px)").matches) {
