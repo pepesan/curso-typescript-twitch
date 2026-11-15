@@ -72,6 +72,36 @@
   }
 }
 
+.mobile-menu-toggle {
+  display: none;
+  width: 2.65rem;
+  height: 2.65rem;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.7rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+
+  span {
+    display: block;
+    width: 1.1rem;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+  }
+}
+
 .theme-toggle-icon {
   color: var(--color-accent);
   font-size: 1.1rem;
@@ -445,69 +475,86 @@
 }
 
 @media (max-width: 900px) {
+  .topbar {
+    min-height: 3.9rem;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    order: 2;
+  }
+
+  .theme-toggle {
+    order: 1;
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+
   .course-layout {
     display: block;
   }
 
   .unit-sidebar {
-    position: sticky;
-    top: 4.5rem;
-    z-index: 4;
-    display: block;
-    width: 100%;
-    height: auto;
-    border-right: 0;
-    border-bottom: 1px solid var(--color-border);
-    padding: 0.55rem 0;
+    position: fixed;
+    z-index: 6;
+    inset: 3.9rem auto 0 0;
+    display: none;
+    width: min(22rem, 88vw);
+    height: calc(100dvh - 3.9rem);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 0;
+    box-shadow: var(--shadow-soft);
+    padding: 1rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .unit-sidebar.is-open {
+    display: flex;
   }
 
   .sidebar-heading {
-    display: none;
+    display: block;
+    flex: 0 0 auto;
+    padding: 0 0.4rem 0.8rem;
   }
 
   .unit-sidebar > nav[aria-label="Unidades"] {
-    overflow-x: auto;
-    overflow-y: hidden;
-    flex: 0 0 auto;
-    touch-action: pan-x;
-    scrollbar-width: thin;
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow: auto;
   }
 
   .unit-list {
-    display: flex;
-    width: max-content;
+    display: grid;
+    width: 100%;
     gap: 0.25rem;
-    padding: 0 0.75rem;
+    padding: 0;
 
     .unit-button {
       min-height: 2.5rem;
       border: 1px solid var(--color-border);
-      white-space: nowrap;
     }
   }
 
   .example-list {
-    display: flex;
-    overflow-x: auto;
-    gap: 0.35rem;
-    scrollbar-width: thin;
-    touch-action: pan-x;
-    overscroll-behavior-x: contain;
+    display: grid;
+    overflow: visible;
   }
 
   .example-list li {
-    flex: 0 0 auto;
-    max-width: 16rem;
+    min-width: 0;
   }
 
   .example-submenu {
-    max-height: none;
-    overflow: hidden;
-    border-top: 0;
-    padding: 0.45rem 0.75rem 0.35rem;
+    max-height: 38%;
+    flex: 0 0 auto;
+    overflow: auto;
+    border-top: 1px solid var(--color-border);
+    padding: 0.8rem 0.1rem 0.2rem;
 
     > .eyebrow {
-      padding: 0 0 0.3rem;
+      padding: 0 0.65rem 0.5rem;
     }
   }
 
