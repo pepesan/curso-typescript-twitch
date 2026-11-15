@@ -1,22 +1,20 @@
 export function setupVars(element: HTMLParagraphElement){
-    // definiciones de variables
+    // Las anotaciones son útiles cuando el tipo no se deduce de un valor inicial.
     let a: null = null
     let b: boolean = true
     let c: number = 23
     let d: string = "Hola"
 
     // variables
-    // var se usa de una manera similar a Javascript
+    // `var` tiene alcance de función; en código moderno se suele preferir let/const.
     var numeroVariable: number = 2;
     numeroVariable = numeroVariable +1;
 
-    // let
-    // se aplica a variables definidas en el bloque de código
+    // `let` tiene alcance de bloque y permite reasignar el valor.
     let variableLocal = "local"
     variableLocal = "otra local"
 
-    // const
-    // se aplica a constantes
+    // `const` evita reasignar la variable; TypeScript puede inferir su tipo.
     const constante: string = "Adios"
     // constante = "Adiosito"  No se puede cambiar
 

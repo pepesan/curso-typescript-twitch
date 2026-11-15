@@ -348,71 +348,9 @@ export function setupClases(element: HTMLParagraphElement){
 
     const d: Derived = new Derived();
 
-    // clases genéricas
-
-    // clase no genérica
-    class ServicioString{
-        private datos: string[] = [];
-
-        agregarDato(dato: string) {
-            this.datos.push(dato);
-            console.log('Dato agregado:', dato);
-        }
-
-        obtenerDatos() {
-            return this.datos;
-        }
-    }
-
-    // Definición de la interfaz
-    interface Usuario {
-        nombre: string;
-        edad: number;
-        correo: string;
-    }
-
-    // Clase genérica que utiliza la interfaz
-    class ServicioGenerico<T> {
-        // definición del atributo en base a T
-        private datos: T[] = [];
-
-        agregarDato(dato: T) {
-            this.datos.push(dato);
-            console.log('Dato agregado:', dato);
-        }
-
-        obtenerDatos() {
-            return this.datos;
-        }
-    }
-
-    // Uso de la clase genérica con la interfaz Usuario
-    const usuario1: Usuario = {
-        nombre: 'Juan',
-        edad: 25,
-        correo: 'juan@example.com'
-    };
-
-    const usuario2: Usuario = {
-        nombre: 'María',
-        edad: 30,
-        correo: 'maria@example.com'
-    };
-
-    const servicioUsuarios: ServicioGenerico<Usuario> = new ServicioGenerico<Usuario>();
-    servicioUsuarios.agregarDato(usuario1);
-    servicioUsuarios.agregarDato(usuario2);
-
-    const usuariosRegistrados: Usuario[] = servicioUsuarios.obtenerDatos();
-
-    // ejemplo de objeto con cadenas de caracteres
-    const servicioCadenas: ServicioGenerico<string> = new ServicioGenerico<string>();
-    servicioCadenas.agregarDato("Hola");
-    servicioCadenas.agregarDato("Mundo");
-    const cadenasRegistradas: string[] = servicioCadenas.obtenerDatos();
-
     element.innerHTML=`
         empleado: ${empleado.empCode} , ${empleado.empName} : 
+        Interface KeyPair: ${kv1.key}, ${kv1.value} :
         empleado2: ${empleado2.empCode} , ${empleado2.empName} : 
         usando los getters : 
         person: ${person.age} ,${person.firstName}, ${person.lastName}, ${person.getFullName()} :
@@ -428,7 +366,5 @@ export function setupClases(element: HTMLParagraphElement){
         Estaticos: ${Estaticos.valor} :
         Clases Abstractas:
         Abstracta: ${d.getName()} :
-        Generics:
-        nombre del primer usuario: ${usuariosRegistrados[0].nombre}
     `;
 }
