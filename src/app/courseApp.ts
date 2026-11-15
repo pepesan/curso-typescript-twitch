@@ -94,6 +94,10 @@ export class CourseApp {
                   <h2>Contenido</h2>
                 </div>
                 <nav aria-label="Unidades"><ol class="unit-list" id="unit-list"></ol></nav>
+                <nav class="example-submenu" aria-label="Ejemplos de la unidad actual">
+                  <p class="eyebrow" id="example-menu-title">Ejemplos</p>
+                  <ol class="example-list" id="example-list"></ol>
+                </nav>
               </aside>
               <main class="lesson-main" id="lesson-main" tabindex="-1">
                 <p class="sr-only" id="lesson-announcement" aria-live="polite" aria-atomic="true"></p>
@@ -103,25 +107,23 @@ export class CourseApp {
                   <div><p class="eyebrow" id="unit-label"></p><h1 id="unit-title"></h1></div>
                 </header>
                 <p class="section-intro" id="unit-description"></p>
-                <nav class="example-navigation" aria-label="Ejemplos de esta unidad">
-                  <h2>Ejemplos</h2>
-                  <ol class="example-list" id="example-list"></ol>
-                </nav>
                 <article class="example-card" aria-labelledby="example-title">
                   <div class="example-card-heading">
                     <p class="eyebrow" id="example-position"></p>
                     <h2 id="example-title"></h2>
                   </div>
                   <p class="example-summary" id="example-summary"></p>
-                  <section class="example-result" id="example-result" aria-label="Demostración">
-                    <h3>Demostración</h3>
-                    <p class="result-caption" id="result-caption"></p>
-                    <p class="example-output" id="example-output"></p>
-                  </section>
-                  <details class="source-details" id="source-details">
-                    <summary>Ver fuente del ejemplo</summary>
-                    <pre><code id="source-code"></code></pre>
-                  </details>
+                  <div class="example-workbench">
+                    <section class="source-panel" id="source-panel" aria-labelledby="source-heading">
+                      <h3 id="source-heading">Código fuente</h3>
+                      <pre><code id="source-code"></code></pre>
+                    </section>
+                    <section class="example-result" id="example-result" aria-labelledby="result-heading">
+                      <h3 id="result-heading">Resultado de la ejecución</h3>
+                      <p class="result-caption" id="result-caption"></p>
+                      <p class="example-output" id="example-output"></p>
+                    </section>
+                  </div>
                 </article>
                 <nav class="lesson-pager" aria-label="Navegar entre ejemplos">
                   <button class="pager-button" type="button" id="previous-example">
@@ -190,6 +192,7 @@ export class CourseApp {
 
         getElement<HTMLOListElement>(this.root, "#unit-list").innerHTML = renderUnitButtons(this.units, unit.id);
         getElement<HTMLOListElement>(this.root, "#example-list").innerHTML = renderExampleButtons(unit.examples, selectedExample.id);
+        getElement<HTMLParagraphElement>(this.root, "#example-menu-title").textContent = `EJEMPLOS · UNIDAD ${unit.id}`;
         getElement<HTMLParagraphElement>(this.root, "#breadcrumb").textContent = `Curso / Unidad ${unit.id}`;
         getElement<HTMLParagraphElement>(this.root, "#lesson-announcement").textContent = `Unidad ${unit.id}: ${unit.title}. Ejemplo: ${selectedExample.title}`;
         getElement<HTMLSpanElement>(this.root, "#unit-number").textContent = unit.id;
@@ -200,15 +203,15 @@ export class CourseApp {
         getElement<HTMLHeadingElement>(this.root, "#example-title").textContent = selectedExample.title;
         getElement<HTMLParagraphElement>(this.root, "#example-summary").textContent = selectedExample.summary;
 
-        const sourceDetails = getElement<HTMLDetailsElement>(this.root, "#source-details");
-        sourceDetails.hidden = selectedExample.sourceCode === undefined;
+        const sourcePanel = getElement<HTMLElement>(this.root, "#source-panel");
+        sourcePanel.hidden = selectedExample.sourceCode === undefined;
         getElement<HTMLElement>(this.root, "#source-code").textContent = selectedExample.sourceCode ?? "";
 
         const resultSection = getElement<HTMLElement>(this.root, "#example-result");
         resultSection.hidden = !selectedExample.render && !selectedExample.output;
         getElement<HTMLParagraphElement>(this.root, "#result-caption").textContent = selectedExample.render
-            ? "Este resultado se genera al seleccionar el ejemplo."
-            : "Resultado esperado";
+            ? "Ejemplo ejecutado en la aplicación."
+            : "Salida descrita para este ejemplo.";
         const output = getElement<HTMLParagraphElement>(this.root, "#example-output");
         output.replaceChildren();
         if (selectedExample.render) {
