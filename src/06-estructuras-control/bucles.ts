@@ -3,7 +3,7 @@ export function setupBucles(element: HTMLParagraphElement){
     // Bucle for
     // Declaración de un array
     const array: number[] = [1, 2, 3, 4, 5];
-    let salidaFor: string;
+    let salidaFor = "";
 
     // For
     salidaFor+="[";
@@ -13,7 +13,7 @@ export function setupBucles(element: HTMLParagraphElement){
     salidaFor+="]";
 
     let i = 0;
-    let salidaWhile: string;
+    let salidaWhile = "";
     salidaWhile+="[";
     while (i < array.length) {
         salidaWhile+=`${array[i]},`
@@ -21,7 +21,7 @@ export function setupBucles(element: HTMLParagraphElement){
     }
     salidaWhile+="]";
 
-    let salidaDoWhile: string;
+    let salidaDoWhile = "";
     i =0;
     salidaDoWhile+="[";
 
@@ -32,7 +32,7 @@ export function setupBucles(element: HTMLParagraphElement){
     salidaDoWhile+="]";
 
     // for of
-    for (let val: number of array) {
+    for (const val of array) {
         console.log(val); // prints values: 1, 2, 3, 4, 5
     }
 

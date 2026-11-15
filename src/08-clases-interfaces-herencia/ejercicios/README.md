@@ -1,8 +1,8 @@
-# Ejercicios de la Unidad 04: Clases
+# Ejercicios de la Unidad 08: Clases, interfaces y herencia
 
 ## Ejercicio 1
 * Todo este ejercicio se resolverá en la carpeta 
- src/ejercicios/04-clases
+ src/08-clases-interfaces-herencia/ejercicios
 * Crea una nueva clase que sea capaz de guardar 
  los datos de un animal, hazlo en un fichero llamado 
  Animal.ts, la clase se llamará Animal
