@@ -6,6 +6,8 @@ Los ejemplos están organizados en `src/` mediante unidades numeradas que siguen
 
 La aplicación permite elegir una unidad y después uno de sus ejemplos. Cada ejemplo presenta una explicación, su demostración y el código fuente desplegable. La selección se refleja en la URL para poder compartir enlaces directos; el tema claro/oscuro se conserva en el navegador.
 
+La configuración de Vite usa rutas relativas, por lo que el contenido de `dist/` también se puede servir desde una subcarpeta.
+
 # Cómo arranco la aplicación de ejemplo
 La aplicación está creada con Vite. Para iniciarla, ejecuta `npm install` y después `npm run dev`.
 

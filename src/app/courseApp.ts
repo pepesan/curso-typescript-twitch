@@ -53,6 +53,7 @@ function getElement<T extends HTMLElement>(root: HTMLElement, selector: string):
 /** Controla la selección de unidades y ejemplos sin volver a cargar la página. */
 export class CourseApp {
     private readonly allExamples: Array<{ unit: CourseUnit; example: CourseExample }>;
+    private focusAfterRender: "unit" | "example" | null = null;
 
     constructor(
         private readonly root: HTMLElement,
@@ -77,7 +78,7 @@ export class CourseApp {
             <a class="skip-link" href="#lesson-main">Saltar al contenido</a>
             <header class="topbar">
               <a class="brand" href="#unidad-01/proposito" aria-label="Cursos de Desarrollo, inicio">
-                <img src="/brand/cursos-de-desarrollo.svg" alt="Cursos de Desarrollo" />
+                <img src="./brand/cursos-de-desarrollo.svg" alt="Cursos de Desarrollo" />
                 <span class="brand-divider" aria-hidden="true"></span>
                 <span class="brand-course">TypeScript</span>
               </a>
@@ -141,14 +142,24 @@ export class CourseApp {
         const unitButton = event.target.closest<HTMLButtonElement>("[data-unit-id]");
         if (unitButton) {
             const unit = this.units.find((item) => item.id === unitButton.dataset.unitId);
-            if (unit) window.location.hash = unitHash(unit.id, unit.examples[0].id);
+            if (unit) {
+                const targetHash = unitHash(unit.id, unit.examples[0].id);
+                if (window.location.hash !== targetHash) {
+                    this.focusAfterRender = "unit";
+                    window.location.hash = targetHash;
+                }
+            }
             return;
         }
 
         const exampleButton = event.target.closest<HTMLButtonElement>("[data-example-id]");
         if (exampleButton) {
             const route = routeFromHash(this.units);
-            window.location.hash = unitHash(route.unitId, exampleButton.dataset.exampleId!);
+            const targetHash = unitHash(route.unitId, exampleButton.dataset.exampleId!);
+            if (window.location.hash !== targetHash) {
+                this.focusAfterRender = "example";
+                window.location.hash = targetHash;
+            }
             return;
         }
 
@@ -175,6 +186,7 @@ export class CourseApp {
         if (window.location.hash !== canonicalHash) {
             window.history.replaceState(null, "", canonicalHash);
         }
+        document.title = `${selectedExample.title} · ${unit.title} | Curso de TypeScript`;
 
         getElement<HTMLOListElement>(this.root, "#unit-list").innerHTML = renderUnitButtons(this.units, unit.id);
         getElement<HTMLOListElement>(this.root, "#example-list").innerHTML = renderExampleButtons(unit.examples, selectedExample.id);
@@ -215,7 +227,14 @@ export class CourseApp {
         getElement<HTMLSpanElement>(this.root, "#next-label").textContent = next ? `Siguiente · ${next.example.title}` : "Fin del curso";
         getElement<HTMLSpanElement>(this.root, "#pager-count").textContent = `${flatIndex + 1} / ${this.allExamples.length}`;
 
-        this.root.querySelector<HTMLButtonElement>("[data-unit-id].is-active")?.scrollIntoView({ block: "nearest", inline: "center" });
-        this.root.querySelector<HTMLButtonElement>("[data-example-id].is-active")?.scrollIntoView({ block: "nearest", inline: "center" });
+        const activeUnitButton = this.root.querySelector<HTMLButtonElement>("[data-unit-id].is-active");
+        const activeExampleButton = this.root.querySelector<HTMLButtonElement>("[data-example-id].is-active");
+        activeUnitButton?.scrollIntoView({ block: "nearest", inline: "center" });
+        activeExampleButton?.scrollIntoView({ block: "nearest", inline: "center" });
+
+        // Rebuilding the button list would otherwise drop keyboard focus.
+        if (this.focusAfterRender === "unit") activeUnitButton?.focus({ preventScroll: true });
+        if (this.focusAfterRender === "example") activeExampleButton?.focus({ preventScroll: true });
+        this.focusAfterRender = null;
     }
 }

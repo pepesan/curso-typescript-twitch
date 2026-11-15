@@ -18,6 +18,10 @@ export function setupTheme(button: HTMLButtonElement): void {
     function applyTheme(nextTheme: Theme): void {
         document.documentElement.dataset.theme = nextTheme;
         const nextLabel = nextTheme === "dark" ? "claro" : "oscuro";
+        document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute(
+            "content",
+            nextTheme === "dark" ? "#101419" : "#f5f6f8",
+        );
         button.setAttribute("aria-label", `Cambiar a tema ${nextLabel}`);
         button.setAttribute("aria-pressed", String(nextTheme === "dark"));
         button.querySelector(".theme-toggle-icon")!.textContent = nextTheme === "dark" ? "☀" : "☾";
