@@ -4,6 +4,8 @@ Repositorio didáctico para aprender los fundamentos de TypeScript partiendo de 
 
 Los ejemplos están organizados en `src/` mediante unidades numeradas que siguen el temario. Algunas unidades son documentación de apoyo; las que contienen código se muestran desde la aplicación de ejemplo.
 
+La aplicación permite elegir una unidad y después uno de sus ejemplos. Cada ejemplo presenta una explicación, su demostración y el código fuente desplegable. La selección se refleja en la URL para poder compartir enlaces directos; el tema claro/oscuro se conserva en el navegador.
+
 # Cómo arranco la aplicación de ejemplo
 La aplicación está creada con Vite. Para iniciarla, ejecuta `npm install` y después `npm run dev`.
 
