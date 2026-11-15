@@ -3,13 +3,26 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "npm run test:unit && npm run test:bdd",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:bdd": "node --import tsx ./node_modules/@cucumber/cucumber/bin/cucumber.js --import 'tests/bdd/steps/**/*.steps.ts' 'tests/bdd/features/**/*.feature'"
   },
   "devDependencies": {
-    "typescript": "^5.0.2",
-    "vite": "^4.3.2"
+    "@cucumber/cucumber": "^13.3.0",
+    "@vitest/coverage-v8": "^5.1.0",
+    "sass": "^1.108.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
   }
 }
