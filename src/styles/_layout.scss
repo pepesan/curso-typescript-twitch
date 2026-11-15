@@ -281,6 +281,10 @@
   list-style: none;
 }
 
+.example-select {
+  display: none;
+}
+
 .example-button {
   display: flex;
   min-height: 2.35rem;
@@ -537,22 +541,29 @@
   }
 
   .example-submenu {
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
+    overflow: visible;
   }
 
   .example-list {
-    width: max-content;
-    min-width: 100%;
-    flex-wrap: nowrap;
+    display: none;
   }
 
-  .example-list li {
-    flex: 0 0 auto;
-  }
+  .example-select {
+    display: block;
+    width: 100%;
+    min-height: 2.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.6rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    padding: 0.5rem 0.75rem;
 
-  .example-button {
-    white-space: nowrap;
+    &:focus-visible {
+      border-color: var(--color-accent);
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
   }
 
   .example-workbench {

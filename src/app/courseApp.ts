@@ -42,6 +42,11 @@ function renderExampleButtons(examples: readonly CourseExample[], activeExampleI
         </li>`).join("");
 }
 
+function renderExampleOptions(examples: readonly CourseExample[]): string {
+    return examples.map((item, index) => `
+        <option value="${item.id}">${String(index + 1).padStart(2, "0")} · ${item.title}</option>`).join("");
+}
+
 function getElement<T extends HTMLElement>(root: HTMLElement, selector: string): T {
     const element = root.querySelector<T>(selector);
     if (!element) {
@@ -53,7 +58,7 @@ function getElement<T extends HTMLElement>(root: HTMLElement, selector: string):
 /** Controla la selección de unidades y ejemplos sin volver a cargar la página. */
 export class CourseApp {
     private readonly allExamples: Array<{ unit: CourseUnit; example: CourseExample }>;
-    private focusAfterRender: "unit" | "example" | null = null;
+    private focusAfterRender: "unit" | "example" | "example-select" | null = null;
 
     constructor(
         private readonly root: HTMLElement,
@@ -63,6 +68,7 @@ export class CourseApp {
         this.renderShell();
 
         root.addEventListener("click", (event: MouseEvent) => this.onClick(event));
+        root.addEventListener("change", (event: Event) => this.onChange(event));
         root.addEventListener("keydown", (event: KeyboardEvent) => {
             if (event.key === "Escape" && this.isMobileMenuOpen()) this.closeMobileMenu(true);
         });
@@ -112,6 +118,7 @@ export class CourseApp {
                 <nav class="example-submenu" aria-label="Ejemplos de la unidad actual">
                   <p class="eyebrow" id="example-menu-title">Ejemplos</p>
                   <ol class="example-list" id="example-list"></ol>
+                  <select class="example-select" id="example-select" aria-labelledby="example-menu-title"></select>
                 </nav>
                 <article class="example-card" aria-labelledby="example-title">
                   <div class="example-card-heading">
@@ -187,6 +194,17 @@ export class CourseApp {
         if (event.target.closest("#next-example")) this.moveExample(1);
     }
 
+    private onChange(event: Event): void {
+        if (!(event.target instanceof HTMLSelectElement) || event.target.id !== "example-select") return;
+
+        const route = routeFromHash(this.units);
+        const targetHash = unitHash(route.unitId, event.target.value);
+        if (window.location.hash !== targetHash) {
+            this.focusAfterRender = "example-select";
+            window.location.hash = targetHash;
+        }
+    }
+
     private isMobileMenuOpen(): boolean {
         return this.root.querySelector("#unit-sidebar")?.classList.contains("is-open") ?? false;
     }
@@ -234,6 +252,9 @@ export class CourseApp {
 
         getElement<HTMLOListElement>(this.root, "#unit-list").innerHTML = renderUnitButtons(this.units, unit.id);
         getElement<HTMLOListElement>(this.root, "#example-list").innerHTML = renderExampleButtons(unit.examples, selectedExample.id);
+        const exampleSelect = getElement<HTMLSelectElement>(this.root, "#example-select");
+        exampleSelect.innerHTML = renderExampleOptions(unit.examples);
+        exampleSelect.value = selectedExample.id;
         getElement<HTMLParagraphElement>(this.root, "#example-menu-title").textContent = `EJEMPLOS · UNIDAD ${unit.id}`;
         getElement<HTMLParagraphElement>(this.root, "#breadcrumb").textContent = `Curso / Unidad ${unit.id}`;
         getElement<HTMLParagraphElement>(this.root, "#lesson-announcement").textContent = `Unidad ${unit.id}: ${unit.title}. Ejemplo: ${selectedExample.title}`;
@@ -293,6 +314,9 @@ export class CourseApp {
             } else {
                 activeExampleButton?.focus({ preventScroll: true });
             }
+        }
+        if (this.focusAfterRender === "example-select") {
+            getElement<HTMLSelectElement>(this.root, "#example-select").focus({ preventScroll: true });
         }
         this.focusAfterRender = null;
     }
