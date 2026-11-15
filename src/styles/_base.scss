@@ -40,6 +40,28 @@ a:focus-visible {
   color: #fff;
 }
 
+.sr-only,
+.skip-link:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.skip-link:focus {
+  position: fixed;
+  z-index: 10;
+  top: 0.5rem;
+  left: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+  padding: 0.65rem 0.85rem;
+}
+
 code {
   border-radius: 0.35rem;
   background: var(--color-code);
