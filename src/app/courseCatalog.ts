@@ -18,14 +18,22 @@ import { setupVoid } from "../04-tipos-datos/void.ts";
 import voidCode from "../04-tipos-datos/void.ts?raw";
 import { setupVars } from "../05-variables/tipos.ts";
 import variablesCode from "../05-variables/tipos.ts?raw";
+import { setupEjerciciosVariables } from "../05-variables/ejercicios/ejercicios.ts";
+import variablesExerciseCode from "../05-variables/ejercicios/ejercicios.ts?raw";
 import { setupBucles } from "../06-estructuras-control/bucles.ts";
 import loopsCode from "../06-estructuras-control/bucles.ts?raw";
+import { setupEjerciciosRecorridos } from "../06-estructuras-control/ejercicios/recorridos.ts";
+import controlExercisesCode from "../06-estructuras-control/ejercicios/recorridos.ts?raw";
+import { setupEjercicioLocalStorage } from "../06-estructuras-control/ejercicios/localStorage.ts";
+import localStorageExerciseCode from "../06-estructuras-control/ejercicios/localStorage.ts?raw";
 import { setupCondicionales } from "../06-estructuras-control/condicionales.ts";
 import conditionsCode from "../06-estructuras-control/condicionales.ts?raw";
 import { setupTryCatch } from "../06-estructuras-control/try-catch.ts";
 import exceptionsCode from "../06-estructuras-control/try-catch.ts?raw";
 import { setupFunciones } from "../07-funciones/funciones.ts";
 import functionsCode from "../07-funciones/funciones.ts?raw";
+import { setupEjerciciosFunciones } from "../07-funciones/ejercicios/ejercicios.ts";
+import functionsExerciseCode from "../07-funciones/ejercicios/ejercicios.ts?raw";
 import { setupClases } from "../08-clases-interfaces-herencia/clases.ts";
 import classesCode from "../08-clases-interfaces-herencia/clases.ts?raw";
 import { setupObjetos } from "../08-clases-interfaces-herencia/objetos.ts";
@@ -38,8 +46,16 @@ import { setupEjercicio02Clases } from "../08-clases-interfaces-herencia/ejercic
 import exerciseTwoCode from "../08-clases-interfaces-herencia/ejercicios/ejercicio02.ts?raw";
 import { setupEjercicio03Clases } from "../08-clases-interfaces-herencia/ejercicios/ejercicio03.ts";
 import exerciseThreeCode from "../08-clases-interfaces-herencia/ejercicios/ejercicio03.ts?raw";
+import { setupEjercicioAnimalRaza } from "../08-clases-interfaces-herencia/ejercicios/raza/ejercicioAnimal.ts";
+import animalRazaCode from "../08-clases-interfaces-herencia/ejercicios/raza/AnimalRaza.ts?raw";
+import animalRazaExerciseCode from "../08-clases-interfaces-herencia/ejercicios/raza/ejercicioAnimal.ts?raw";
+import { setupEjercicioPerroRaza } from "../08-clases-interfaces-herencia/ejercicios/raza/ejercicioPerro.ts";
+import perroRazaCode from "../08-clases-interfaces-herencia/ejercicios/raza/PerroRaza.ts?raw";
+import perroRazaExerciseCode from "../08-clases-interfaces-herencia/ejercicios/raza/ejercicioPerro.ts?raw";
 import { setupGenerics } from "../09-generics/generics.ts";
 import genericsCode from "../09-generics/generics.ts?raw";
+import { setupEjercicioMapa } from "../09-generics/ejercicios/MapaGenerico.ts";
+import mapExerciseCode from "../09-generics/ejercicios/MapaGenerico.ts?raw";
 import { crearSaludo } from "../10-modulos/saludos.ts";
 import modulesCode from "../10-modulos/saludos.ts?raw";
 import { setupImportaciones } from "../11-importaciones-exportaciones/ejemplo.ts";
@@ -114,7 +130,10 @@ export const courseUnits: readonly CourseUnit[] = [
         id: "05",
         title: "Variables",
         description: "Declara valores con alcance de bloque, decide si pueden reasignarse y deja que TypeScript infiera el tipo cuando es evidente.",
-        examples: [example("declaraciones", "let, const y var", "Compara la inferencia con anotaciones explícitas y el alcance de bloque de let/const frente a var.", variablesCode, setupVars)],
+        examples: [
+            example("declaraciones", "let, const y var", "Compara la inferencia con anotaciones explícitas y el alcance de bloque de let/const frente a var.", variablesCode, setupVars),
+            example("ejercicios-variables", "Ejercicios: tipos y suma", "Declara valores null, boolean, number y string; suma dos variables number y compara var, let y const.", variablesExerciseCode, setupEjerciciosVariables),
+        ],
     },
     {
         id: "06",
@@ -124,13 +143,18 @@ export const courseUnits: readonly CourseUnit[] = [
             example("condicionales", "if y switch", "Selecciona una rama según una condición y cubre los casos de un valor con switch.", conditionsCode, setupCondicionales),
             example("bucles", "Iterar arrays y cadenas", "Compara for, while, do...while, for...of y for...in según qué elemento o índice necesitas.", loopsCode, setupBucles),
             example("try-catch", "Manejo de errores", "try/catch permite responder a errores en ejecución; la excepción capturada debe tratarse como desconocida.", exceptionsCode, setupTryCatch),
+            example("ejercicios-bucles", "Ejercicios: recorrer diez números", "Recorre un array de diez valores con for, while, do...while, for...of y for...in, y muestra todas las iteraciones.", controlExercisesCode, setupEjerciciosRecorridos),
+            example("ejercicio-local-storage", "Ejercicio: LocalStorage y try/catch", "Guarda un valor en LocalStorage, recupéralo y presenta el resultado incluso si el navegador produce un error.", localStorageExerciseCode, setupEjercicioLocalStorage),
         ],
     },
     {
         id: "07",
         title: "Funciones",
         description: "Expresa el contrato de una función en sus parámetros, resultado y callbacks para reutilizarla con seguridad.",
-        examples: [example("firmas", "Parámetros, retornos y sobrecargas", "Explora valores opcionales y por defecto, rest, tipos función, callbacks y sobrecargas sin perder el tipo de resultado.", functionsCode, setupFunciones)],
+        examples: [
+            example("firmas", "Parámetros, retornos y sobrecargas", "Explora valores opcionales y por defecto, rest, tipos función, callbacks y sobrecargas sin perder el tipo de resultado.", functionsCode, setupFunciones),
+            example("ejercicios-funciones", "Ejercicios: suma y parámetros", "Practica funciones que imprimen, devuelven sumas, aceptan parámetros opcionales o predeterminados y concatenan textos con rest.", functionsExerciseCode, setupEjerciciosFunciones),
+        ],
     },
     {
         id: "08",
@@ -143,13 +167,18 @@ export const courseUnits: readonly CourseUnit[] = [
             example("ejercicio-animal", "Práctica: Animal", "Crea una clase, oculta su estado y expón operaciones seguras mediante getters y setters.", exerciseOneCode, setupEjercicioClases),
             example("ejercicio-perro", "Práctica: herencia", "Extiende Animal con Perro y reutiliza el comportamiento de la clase base.", exerciseTwoCode, setupEjercicio02Clases),
             example("ejercicio-interface", "Práctica: interfaz", "Implementa el contrato Luchador y utiliza la instancia a través de su método.", exerciseThreeCode, setupEjercicio03Clases),
+            example("ejercicio-animal-raza", "Ejercicio: Animal y raza", "Implementa raza con constructor predeterminado, getter, setter y display; crea instancias con y sin parámetro.", `${animalRazaCode}\n\n${animalRazaExerciseCode}`, setupEjercicioAnimalRaza),
+            example("ejercicio-perro-raza", "Ejercicio: Perro hereda de Animal", "Extiende Animal, pasa la raza a super, guarda el nombre de Perro y muestra dos objetos por consola y en pantalla.", `${animalRazaCode}\n\n${perroRazaCode}\n\n${perroRazaExerciseCode}`, setupEjercicioPerroRaza),
         ],
     },
     {
         id: "09",
         title: "Generics",
         description: "Escribe funciones y estructuras reutilizables que conservan el tipo concreto de los valores que reciben.",
-        examples: [example("generics", "Funciones y restricciones genéricas", "T relaciona entradas y salidas. Una restricción extends permite requerir propiedades concretas sin perder el tipo original.", genericsCode, setupGenerics)],
+        examples: [
+            example("generics", "Funciones y restricciones genéricas", "T relaciona entradas y salidas. Una restricción extends permite requerir propiedades concretas sin perder el tipo original.", genericsCode, setupGenerics),
+            example("ejercicio-mapa-generico", "Ejercicio: mapa clave/valor", "Implementa una clase genérica con constructor, add, borrar por clave y display usando Map.", mapExerciseCode, setupEjercicioMapa),
+        ],
     },
     {
         id: "10",
