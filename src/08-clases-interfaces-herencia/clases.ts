@@ -83,7 +83,9 @@ export function setupClases(element: HTMLParagraphElement){
     let person: Person = new Person(44, "David", "Vaquero")
     // usando los setters
     person.age = 45
+    console.log(person.age)
     person.firstName = "Davicin"
+    console.log(person.firstName)
 
 
     class Person2{
@@ -140,6 +142,7 @@ export function setupClases(element: HTMLParagraphElement){
     // usando los setters
     person2.setAge(45);
     person2.setFirstName("Davicin");
+    console.log(person2.getFullName());
 
     // uso de toString
     class Cuadrado{
@@ -171,7 +174,8 @@ export function setupClases(element: HTMLParagraphElement){
     }
 
     let cuadrado: Cuadrado = new Cuadrado(2);
-
+    console.log(cuadrado);
+    console.log(cuadrado.toString());
     // uso de Herencia
     // clase Madre
     class Persona {

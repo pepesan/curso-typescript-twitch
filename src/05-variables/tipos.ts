@@ -4,7 +4,10 @@ export function setupVars(element: HTMLParagraphElement){
     let b: boolean = true
     let c: number = 23
     let d: string = "Hola"
-
+    console.log(a)
+    console.log(b)
+    console.log(c)
+    console.log(d)
     // variables
     // `var` tiene alcance de función; en código moderno se suele preferir let/const.
     var numeroVariable: number = 2;
