@@ -14,7 +14,9 @@
     "test:unit": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:bdd": "node --import tsx ./node_modules/@cucumber/cucumber/bin/cucumber.js --import \"tests/bdd/steps/**/*.steps.ts\" \"tests/bdd/features/**/*.feature\" --format progress --format html:reports/bdd/index.html --format junit:reports/bdd/junit.xml --format json:reports/bdd/cucumber.json"
+    "test:bdd": "node --import tsx ./node_modules/@cucumber/cucumber/bin/cucumber.js --import \"tests/bdd/steps/**/*.steps.ts\" \"tests/bdd/features/**/*.feature\" --format progress --format html:reports/bdd/index.html --format junit:reports/bdd/junit.xml --format json:reports/bdd/cucumber.json",
+    "report:unit": "vite preview --outDir reports/unit/html --port 4174 --open",
+    "report:bdd": "vite preview --outDir reports/bdd --port 4175 --open"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^13.3.0",
