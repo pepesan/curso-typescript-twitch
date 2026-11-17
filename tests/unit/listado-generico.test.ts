@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { GenericList } from "../../src/08-clases-interfaces-herencia/listado-generico.ts";
+import { GenericList } from "../../src/09-generics/listado-generico.ts";
 
 describe("GenericList<T>", () => {
     it("se inicializa con los valores recibidos en orden", () => {

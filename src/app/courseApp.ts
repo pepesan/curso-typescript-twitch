@@ -1,4 +1,4 @@
-import type { CourseExample, CourseUnit } from "./courseCatalog.ts";
+import type { CourseExample, CourseUnit, SourceBlock } from "./courseCatalog.ts";
 
 export interface CourseRoute {
     unitId: string;
@@ -40,6 +40,26 @@ function renderExampleButtons(examples: readonly CourseExample[], activeExampleI
             <span>${item.title}</span>
           </button>
         </li>`).join("");
+}
+
+/** Crea un bloque de código con la ruta del fichero encima, si la tiene. */
+function createSourceBlock(block: SourceBlock): HTMLElement {
+    const wrapper = document.createElement("div");
+    wrapper.className = "source-block";
+    if (block.path) {
+        const label = document.createElement("p");
+        label.className = "source-path";
+        const code = document.createElement("code");
+        code.textContent = block.path;
+        label.append(code);
+        wrapper.append(label);
+    }
+    const pre = document.createElement("pre");
+    const code = document.createElement("code");
+    code.textContent = block.code;
+    pre.append(code);
+    wrapper.append(pre);
+    return wrapper;
 }
 
 function getElement<T extends HTMLElement>(root: HTMLElement, selector: string): T {
@@ -133,7 +153,7 @@ export class CourseApp {
                   <div class="example-workbench">
                     <section class="source-panel" id="source-panel" aria-labelledby="source-heading">
                       <h3 id="source-heading">Código fuente</h3>
-                      <pre><code id="source-code"></code></pre>
+                      <div class="source-blocks" id="source-blocks"></div>
                     </section>
                     <section class="example-result" id="example-result" aria-labelledby="result-heading">
                       <h3 id="result-heading">Resultado de la ejecución</h3>
@@ -293,8 +313,10 @@ export class CourseApp {
         getElement<HTMLParagraphElement>(this.root, "#example-summary").textContent = selectedExample.summary;
 
         const sourcePanel = getElement<HTMLElement>(this.root, "#source-panel");
-        sourcePanel.hidden = selectedExample.sourceCode === undefined;
-        getElement<HTMLElement>(this.root, "#source-code").textContent = selectedExample.sourceCode ?? "";
+        sourcePanel.hidden = selectedExample.sources.length === 0;
+        getElement<HTMLElement>(this.root, "#source-blocks").replaceChildren(
+            ...selectedExample.sources.map(createSourceBlock),
+        );
 
         const resultSection = getElement<HTMLElement>(this.root, "#example-result");
         resultSection.hidden = !selectedExample.render && !selectedExample.output;
