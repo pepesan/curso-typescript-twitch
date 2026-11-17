@@ -40,6 +40,8 @@ import { setupObjetos } from "../08-clases-interfaces-herencia/objetos.ts";
 import objectsCode from "../08-clases-interfaces-herencia/objetos.ts?raw";
 import { setupRequisitos } from "../08-clases-interfaces-herencia/requisitos.ts";
 import requirementsCode from "../08-clases-interfaces-herencia/requisitos.ts?raw";
+import { setupGenericList } from "../08-clases-interfaces-herencia/listado-generico.ts";
+import genericListCode from "../08-clases-interfaces-herencia/listado-generico.ts?raw";
 import { setupEjercicioClases } from "../08-clases-interfaces-herencia/ejercicios/ejercicio01.ts";
 import exerciseOneCode from "../08-clases-interfaces-herencia/ejercicios/ejercicio01.ts?raw";
 import { setupEjercicio02Clases } from "../08-clases-interfaces-herencia/ejercicios/ejercicio02.ts";
@@ -164,6 +166,7 @@ export const courseUnits: readonly CourseUnit[] = [
             example("objetos", "Objetos, type e interface", "Los tipos de objeto describen las propiedades requeridas y opcionales; readonly evita reasignarlas desde TypeScript.", objectsCode, setupObjetos),
             example("requisitos", "Objetos a partir de requisitos", "Calcula el total de un pedido y valida en ejecución un porcentaje de descuento.", requirementsCode, setupRequisitos),
             example("clases", "Clases e interfaces", "El ejemplo reúne constructores, encapsulación, getters, herencia, interfaces y clases abstractas.", classesCode, setupClases),
+            example("listado-generico", "Listado genérico", "Un Listado<T> se inicializa con valores, inserta al inicio, al final o en una posición, y se libera de memoria vaciando sus referencias.", genericListCode, setupGenericList),
             example("ejercicio-animal", "Práctica: Animal", "Crea una clase, oculta su estado y expón operaciones seguras mediante getters y setters.", exerciseOneCode, setupEjercicioClases),
             example("ejercicio-perro", "Práctica: herencia", "Extiende Animal con Perro y reutiliza el comportamiento de la clase base.", exerciseTwoCode, setupEjercicio02Clases),
             example("ejercicio-interface", "Práctica: interfaz", "Implementa el contrato Luchador y utiliza la instancia a través de su método.", exerciseThreeCode, setupEjercicio03Clases),
