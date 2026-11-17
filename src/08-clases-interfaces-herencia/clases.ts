@@ -355,12 +355,14 @@ export function setupClases(element: HTMLParagraphElement){
 
     const d: Derived = new Derived();
 
-    class KeyValuePair<T,U>
+    class KeyValuePair<T = number, U = string>
     {
-        // @ts-ignore
-        private key: T
-        // @ts-ignore
-        private val: U
+        private key: T | undefined;
+        private val: U | undefined;
+        constructor(key?: T, val?: U) {
+            this.key = key;
+            this.val = val;
+        }
         setKeyValue(key: T , val: U ): void {
             this.key = key;
             this.val = val;
