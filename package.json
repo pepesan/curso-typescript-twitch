@@ -19,6 +19,7 @@
   "devDependencies": {
     "@cucumber/cucumber": "^13.3.0",
     "@vitest/coverage-v8": "^5.1.0",
+    "chai": "^6.3.0",
     "sass": "^1.108.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
