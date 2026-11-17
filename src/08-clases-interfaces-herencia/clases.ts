@@ -271,6 +271,7 @@ export function setupClases(element: HTMLParagraphElement){
         }
     }
     let empleado3: Empleado = new Empleado(44, "David", "Vaquero", "Formador");
+    console.log(empleado3);
 
     // uso de interfaces con clases
     // definición del interfaz que define métodos
@@ -286,6 +287,7 @@ export function setupClases(element: HTMLParagraphElement){
     }
 
     let animalico: Animalico = new Animalico();
+    console.log(animalico.dameString());
 
     interface OtroInterfaz{
         dameOtraString(): string;
@@ -302,7 +304,8 @@ export function setupClases(element: HTMLParagraphElement){
     }
 
     let animalicomultiple: AnimalicoMultiple = new AnimalicoMultiple();
-
+    console.log(animalicomultiple.dameString());
+    console.log(animalicomultiple.dameOtraString());
 
     // incluidos ejemplos de interfaces con datos
     interface Datos{
@@ -351,6 +354,25 @@ export function setupClases(element: HTMLParagraphElement){
     }
 
     const d: Derived = new Derived();
+
+    class KeyValuePair<T,U>
+    {
+        // @ts-ignore
+        private key: T
+        // @ts-ignore
+        private val: U
+        setKeyValue(key: T , val: U ): void {
+            this.key = key;
+            this.val = val;
+        }
+        display():void {
+            console.log(`Key = ${this.key}, val = ${this.val}`);
+        }
+    }
+
+    let kvp1 = new KeyValuePair<number, string>();
+    kvp1.setKeyValue(1, "Steve");
+    kvp1.display(); //Output: Key = 1, Val = Steve
 
     element.innerHTML=`
         empleado: ${empleado.empCode} , ${empleado.empName} : 
