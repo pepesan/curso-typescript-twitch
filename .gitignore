@@ -29,3 +29,6 @@ coverage
 /AGENTS.md
 /PLAN.md
 .mcp.json
+
+# Informes de tests (generados)
+reports

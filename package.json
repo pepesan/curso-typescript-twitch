@@ -14,11 +14,12 @@
     "test:unit": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:bdd": "node --import tsx ./node_modules/@cucumber/cucumber/bin/cucumber.js --import 'tests/bdd/steps/**/*.steps.ts' 'tests/bdd/features/**/*.feature'"
+    "test:bdd": "node --import tsx ./node_modules/@cucumber/cucumber/bin/cucumber.js --import \"tests/bdd/steps/**/*.steps.ts\" \"tests/bdd/features/**/*.feature\" --format progress --format html:reports/bdd/index.html --format junit:reports/bdd/junit.xml --format json:reports/bdd/cucumber.json"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^13.3.0",
     "@vitest/coverage-v8": "^5.1.0",
+    "@vitest/ui": "^5.1.0",
     "chai": "^6.3.0",
     "sass": "^1.108.2",
     "tsx": "^4.23.15",
