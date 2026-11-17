@@ -12,9 +12,11 @@
     "preview": "vite preview",
     "test": "npm run test:unit && npm run test:bdd",
     "test:unit": "vitest run",
+    "test:unit:watch": "vitest --watch",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:bdd": "node --import tsx ./node_modules/@cucumber/cucumber/bin/cucumber.js --import \"tests/bdd/steps/**/*.steps.ts\" \"tests/bdd/features/**/*.feature\" --format progress --format html:reports/bdd/index.html --format junit:reports/bdd/junit.xml --format json:reports/bdd/cucumber.json",
+    "test:bdd:watch": "node --watch --import tsx ./node_modules/@cucumber/cucumber/bin/cucumber.js --import \"tests/bdd/steps/**/*.steps.ts\" \"tests/bdd/features/**/*.feature\" --format progress --format html:reports/bdd/index.html --format junit:reports/bdd/junit.xml --format json:reports/bdd/cucumber.json",
     "report:unit": "vite preview --outDir reports/unit/html --port 4175 --open",
     "report:bdd": "vite preview --outDir reports/bdd --port 4176 --open"
   },
